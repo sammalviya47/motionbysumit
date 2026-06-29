@@ -87,8 +87,12 @@ html.lenis, html.lenis body { height: auto; }
 .no-scrollbar::-webkit-scrollbar { display: none; }
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 
-button, a { cursor: none; }
-@media (max-width: 768px) { button, a { cursor: pointer; } }
+/* Hide native cursor only on devices with a real pointing device — keep it on touch */
+@media (hover: hover) and (pointer: fine) {
+  html, body, *, *::before, *::after {
+    cursor: none !important;
+  }
+}
 
 .glow {
   box-shadow: 0 0 80px -20px rgba(255,255,255,0.15), 0 30px 60px -30px rgba(0,0,0,0.8);
