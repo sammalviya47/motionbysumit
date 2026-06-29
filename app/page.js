@@ -548,19 +548,31 @@ function Work({ onOpen }) {
 /* -----------------------------------------------------------
    CASE STUDY MODAL  (iframe-embeds the Drive video)
 ----------------------------------------------------------- */
-function CaseStudy({ project, onClose }) {
+function CaseStudy({ project, onClose, onOpen }) {
+  const scrollerRef = useRef(null);
+
+  // Reset modal scroll to top whenever the project changes
   useEffect(() => {
-    document.body.style.overflow = 'hidden';
-    return () => { document.body.style.overflow = ''; };
-  }, []);
+    if (scrollerRef.current) scrollerRef.current.scrollTop = 0;
+  }, [project?.id]);
+
+  // ESC key to close (keyboard accessibility)
+  useEffect(() => {
+    const onKey = (e) => { if (e.key === 'Escape') onClose(); };
+    window.addEventListener('keydown', onKey);
+    return () => window.removeEventListener('keydown', onKey);
+  }, [onClose]);
 
   return (
     <motion.div
-      className="fixed inset-0 z-[120] bg-[#060606]/95 backdrop-blur-xl overflow-y-auto"
+      ref={scrollerRef}
+      data-lenis-prevent
+      className="fixed inset-0 z-[120] bg-[#060606]/95 backdrop-blur-xl overflow-y-auto overscroll-contain"
+      style={{ WebkitOverflowScrolling: 'touch' }}
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
+      transition={{ duration: 0.45 }}
     >
       <button onClick={onClose} data-cursor="link" className="fixed top-6 right-6 z-[130] w-12 h-12 rounded-full bg-white text-black flex items-center justify-center hover:scale-110 transition">
         <X className="w-5 h-5" />
@@ -656,7 +668,8 @@ function CaseStudy({ project, onClose }) {
             {WORK.filter((p) => p.id !== project.id).slice(0, 3).map((p) => (
               <button
                 key={p.id}
-                onClick={() => { onClose(); setTimeout(() => onClose && p, 250); }}
+                onClick={() => onOpen(p)}
+                data-cursor="play"
                 className="text-left group"
               >
                 <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
@@ -802,24 +815,55 @@ function PageEntry() {
 ----------------------------------------------------------- */
 function App() {
   const [active, setActive] = useState(null);
+  const lenisRef = useRef(null);
 
   useEffect(() => {
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: 1.15,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
+      smoothTouch: false,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.4,
     });
+    lenisRef.current = lenis;
+
     let id;
     function raf(time) {
       lenis.raf(time);
       id = requestAnimationFrame(raf);
     }
     id = requestAnimationFrame(raf);
+
     return () => {
       cancelAnimationFrame(id);
       lenis.destroy();
+      lenisRef.current = null;
     };
   }, []);
+
+  // Pause Lenis while case-study modal is open so the modal can scroll natively.
+  // Resume — and never leave the page in a "stuck" state — on close.
+  useEffect(() => {
+    const lenis = lenisRef.current;
+    if (!lenis) return;
+    if (active) {
+      lenis.stop();
+    } else {
+      lenis.start();
+      // Belt-and-suspenders: force-resume on next frame after exit anim
+      const t = setTimeout(() => lenis.start(), 50);
+      return () => clearTimeout(t);
+    }
+  }, [active]);
+
+  // Safety net: never leave <html>/<body> with overflow:hidden after close
+  useEffect(() => {
+    if (!active) {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+  }, [active]);
 
   return (
     <LayoutGroup>
@@ -836,7 +880,13 @@ function App() {
         <Footer />
 
         <AnimatePresence mode="wait">
-          {active && <CaseStudy project={active} onClose={() => setActive(null)} />}
+          {active && (
+            <CaseStudy
+              project={active}
+              onClose={() => setActive(null)}
+              onOpen={setActive}
+            />
+          )}
         </AnimatePresence>
       </main>
     </LayoutGroup>
