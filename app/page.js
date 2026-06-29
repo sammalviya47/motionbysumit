@@ -12,45 +12,168 @@ import {
   LayoutGroup,
 } from 'framer-motion';
 import Lenis from 'lenis';
-import { ArrowUpRight, ArrowRight, X, Plus } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, X, Plus, ExternalLink } from 'lucide-react';
 
-/* DATA — Cloudinary demo videos in .webm (universally supported, codec-friendly) */
-const C = (path) => `https://res.cloudinary.com/demo/video/upload/${path}.webm`;
-const V = {
-  v1: C('elephants'),
-  v2: C('sea_turtle'),
-  v3: C('dog'),
-  v4: C('v1689789988/samples/dance-2'),
-  v5: C('samples/cld-sample-video'),
-  v6: C('e_hue:80/elephants'),
-  v7: C('e_hue:200/sea_turtle'),
-  v8: C('e_saturation:-60,e_hue:140/dog'),
-  v9: C('e_blur:200,e_hue:300/v1689789988/samples/dance-2'),
-  v10: C('e_negate/sea_turtle'),
-  v11: C('e_hue:-90/samples/cld-sample-video'),
-  v12: C('e_grayscale,e_brightness:30/elephants'),
-};
+/* -----------------------------------------------------------
+   DATA  —  Behance covers on home, Drive videos in work
+----------------------------------------------------------- */
 
-const HERO_REELS = [
-  { id: 'h1', src: V.v6, style: { top: '8%', left: '6%', w: 280, h: 360, rot: -8, z: 3 } },
-  { id: 'h2', src: V.v2, style: { top: '14%', right: '8%', w: 300, h: 380, rot: 7, z: 4 } },
-  { id: 'h3', src: V.v9, style: { bottom: '12%', left: '14%', w: 260, h: 340, rot: 6, z: 2 } },
-  { id: 'h4', src: V.v4, style: { bottom: '10%', right: '16%', w: 260, h: 340, rot: -5, z: 2 } },
-  { id: 'h5', src: V.v11, style: { top: '38%', left: '42%', w: 220, h: 290, rot: 2, z: 5 } },
+const BEHANCE = [
+  {
+    id: 'b1',
+    title: 'Sarvam AI',
+    client: 'Sarvam AI',
+    category: 'AI / Product Launch',
+    cover: 'https://mir-s3-cdn-cf.behance.net/projects/404/d24355245007383.Y3JvcCwxMDgwLDg0NCwwLDExNw.png',
+    href: 'https://www.behance.net/gallery/245007383/Sarvam-AI-Product-Launch-Videos',
+    style: { top: '7%', left: '5%', w: 290, h: 360, rot: -8, z: 3 },
+  },
+  {
+    id: 'b2',
+    title: 'Stylumia',
+    client: 'Stylumia',
+    category: 'AI / Brand Motion',
+    cover: 'https://mir-s3-cdn-cf.behance.net/projects/404/6a6101245035043.Y3JvcCwxMDkzLDg1NSwyNzg2LDA.png',
+    href: 'https://www.behance.net/gallery/245035043/Stylumia',
+    style: { top: '12%', right: '6%', w: 310, h: 380, rot: 7, z: 4 },
+  },
+  {
+    id: 'b3',
+    title: 'Nerve AI',
+    client: 'Nerve AI',
+    category: 'AI / Product Launch',
+    cover: 'https://mir-s3-cdn-cf.behance.net/projects/404/e6819c244958177.Y3JvcCw5OTksNzgyLDQ2MCww.png',
+    href: 'https://www.behance.net/gallery/244958177/Nerve-AI-Product-Launch-Video',
+    style: { bottom: '10%', left: '12%', w: 270, h: 340, rot: 6, z: 2 },
+  },
+  {
+    id: 'b4',
+    title: 'BASE',
+    client: 'BASE',
+    category: 'Web3 / Explainer',
+    cover: 'https://mir-s3-cdn-cf.behance.net/projects/404/a37d2e242815819.Y3JvcCwyNzYxLDIxNjAsNTQwLDA.jpg',
+    href: 'https://www.behance.net/gallery/242815819/BASE-Motiongraphics-Explainer',
+    style: { bottom: '8%', right: '14%', w: 270, h: 340, rot: -5, z: 2 },
+  },
+  {
+    id: 'b5',
+    title: 'Beratrax',
+    client: 'Beratrax',
+    category: 'Web3 / UI Motion',
+    cover: 'https://mir-s3-cdn-cf.behance.net/projects/404/ce332f243268695.Y3JvcCwxMDA3LDc4OCwxOTcsMA.jpg',
+    href: 'https://www.behance.net/gallery/243268695/Beratrax',
+    style: { top: '36%', left: '42%', w: 230, h: 290, rot: 2, z: 5 },
+  },
 ];
 
-const PROJECTS = [
-  { id: 'p1', title: 'Nebula AI — Launch Film', client: 'Nebula AI', category: 'AI / Product Film', year: '2025', span: 'tall', src: V.v9, color: '#1a1a2e', challenge: 'Translate an abstract intelligence layer into a tactile, cinematic product film without resorting to clichéd particle systems.', outcome: 'A 60-second hero film with 92% retention on the launch page and a 3.4× lift in qualified demos in the first month.', tools: ['Cinema 4D', 'Redshift', 'After Effects', 'Houdini'], role: 'Direction, Design, Animation' },
-  { id: 'p2', title: 'Helio — SaaS Brand Motion', client: 'Helio Cloud', category: 'SaaS / Brand Film', year: '2025', span: 'wide', src: V.v6, color: '#0a1a2a', challenge: 'Build a motion language that scales from a 6-second product loop to a 90-second category narrative.', outcome: 'Shipped a motion system used across 14 surfaces. Lifted homepage time-on-page by 41%.', tools: ['After Effects', 'Figma', 'Lottie', 'Webflow'], role: 'Motion Direction, System Design' },
-  { id: 'p3', title: 'Lumen Protocol', client: 'Lumen Labs', category: 'Web3 / Explainer', year: '2024', span: 'short', src: V.v11, color: '#0d0a24', challenge: 'Explain a zk-rollup architecture in 75 seconds, without losing technical credibility.', outcome: '480k organic views in 6 weeks. Cited by three top-10 crypto publications.', tools: ['Blender', 'After Effects', 'Cavalry'], role: 'Concept, Animation' },
-  { id: 'p4', title: 'Arc — Field Notes', client: 'The Browser Company', category: 'Product / Editorial', year: '2024', span: 'tall', src: V.v4, color: '#1f0a14', challenge: 'Translate hand-illustrated stills into a kinetic editorial that breathes on a long-form page.', outcome: 'Featured on the Arc release page; played a measurable role in a 2.1× sign-up week.', tools: ['After Effects', 'Procreate', 'Cavalry'], role: 'Animation Direction' },
-  { id: 'p5', title: 'Vela — Series A Sizzle', client: 'Vela', category: 'AI / Investor Film', year: '2025', span: 'square', src: V.v7, color: '#0b1f1c', challenge: 'Compress 18 months of product evolution into a 45-second tone film for an investor roadshow.', outcome: 'Closed a $48M Series A. The film is still pinned on the founder\u2019s deck.', tools: ['After Effects', 'Cinema 4D', 'Octane'], role: 'Direction, Edit, Sound' },
-  { id: 'p6', title: 'Orbit DAO — Governance', client: 'Orbit', category: 'Web3 / System Film', year: '2024', span: 'wide', src: V.v10, color: '#171a0d', challenge: 'Make on-chain governance feel like a living organism, not a flowchart.', outcome: 'Cited as the clearest explanation of meta-governance to date by a16z crypto.', tools: ['Houdini', 'Redshift', 'After Effects'], role: 'Direction, FX, Animation' },
-  { id: 'p7', title: 'Pulse — Onboarding Loops', client: 'Pulse Health', category: 'SaaS / UI Motion', year: '2025', span: 'short', src: V.v2, color: '#0a1a24', challenge: 'Design 22 onboarding loops that load in under 80kb each and still feel uniquely Pulse.', outcome: 'Reduced first-task abandonment by 28%. Library now shipped across three products.', tools: ['After Effects', 'Lottie', 'Rive'], role: 'Motion System, Animation' },
-  { id: 'p8', title: 'Mirage — AI Identity', client: 'Mirage', category: 'AI / Brand Identity', year: '2025', span: 'tall', src: V.v12, color: '#1a120a', challenge: 'Build a brand motion identity that performs as a 1-second sting and a 2-minute keynote piece.', outcome: 'Rolled out across keynote, web, social and product. Won a Brand New "Noted" mention.', tools: ['Cinema 4D', 'Octane', 'After Effects'], role: 'Motion Identity Director' },
+const driveThumb = (id, w = 1600) => `https://lh3.googleusercontent.com/d/${id}=w${w}`;
+const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
+const driveOpen = (id) => `https://drive.google.com/file/d/${id}/view`;
+
+const WORK = [
+  {
+    id: 'w1',
+    title: 'Sarvam AI — Product Launch',
+    client: 'Sarvam AI',
+    category: 'AI / Product Film',
+    year: '2025',
+    driveId: '1fVSFbzlgZv_grMgypIClZ06SxKPtyWFN', // Base Intro.mp4
+    color: '#0a1a2a',
+    aspect: 'aspect-[16/9]',
+    challenge: 'Compress a multi-modal AI model launch into a brand-defining hero film that performs on the launch page, social and decks.',
+    outcome: 'Anchored the launch reel and the homepage hero. Played a measurable role in pre-launch sign-ups.',
+    tools: ['After Effects', 'Cinema 4D', 'Octane'],
+    role: 'Direction, Design, Animation',
+  },
+  {
+    id: 'w2',
+    title: 'Agglayer — Motion Identity',
+    client: 'Polygon · Agglayer',
+    category: 'Web3 / System Film',
+    year: '2025',
+    driveId: '1LeGaCO3XpUUiel1tDbVDnRJcC-EYoWca', // Agglayer.mp4
+    color: '#1a0d24',
+    aspect: 'aspect-[9/16]',
+    challenge: 'Make a complex aggregation layer feel like a living, breathing settlement network — not a flowchart.',
+    outcome: 'Used across keynote, web and social. Cited by ecosystem media as one of the clearest network explainers.',
+    tools: ['Cinema 4D', 'Redshift', 'After Effects'],
+    role: 'Motion Direction, Animation',
+  },
+  {
+    id: 'w3',
+    title: 'Beratrax — UI Motion',
+    client: 'Beratrax',
+    category: 'Web3 / UI Motion',
+    year: '2025',
+    driveId: '1NIVV3Ijht4FV3MQpO7q2gVl9euhfrVT0', // Beratrax Ui - Video 02_Final.mp4
+    color: '#171a0d',
+    aspect: 'aspect-[16/9]',
+    challenge: 'Translate the Beratrax product surface into a kinetic, on-brand walkthrough you actually want to finish.',
+    outcome: 'Shipped as the main product walkthrough and onboarding asset. Reused across decks and social cutdowns.',
+    tools: ['After Effects', 'Figma', 'Lottie'],
+    role: 'Motion Design, Animation',
+  },
+  {
+    id: 'w4',
+    title: 'Beratrax — Logo Reveal',
+    client: 'Beratrax',
+    category: 'Web3 / Brand Sting',
+    year: '2024',
+    driveId: '1Fr132YBCqcWGdXaDl1RC2W9IKVjf2wnS', // Beratrax_Logo.mp4
+    color: '#0d141a',
+    aspect: 'aspect-[1/1]',
+    challenge: 'Build a 6-second logo sting that sets the tonal table for the entire brand motion system.',
+    outcome: 'Used as a category lead-in and on all client communications.',
+    tools: ['After Effects', 'Cinema 4D'],
+    role: 'Motion Identity',
+  },
+  {
+    id: 'w5',
+    title: 'Biconomy — Hero Film',
+    client: 'Biconomy',
+    category: 'Web3 / Hero Film',
+    year: '2025',
+    driveId: '1ued36GvXmvwvDrV9rYYlw1p3lMoAlyZE', // Biconomy_5.1_1.mp4
+    color: '#0a1f1c',
+    aspect: 'aspect-[16/9]',
+    challenge: 'Build the visual language for Biconomy’s next chapter — abstract, infrastructure, alive.',
+    outcome: 'Anchored the main hero film and a series of social cutdowns.',
+    tools: ['Cinema 4D', 'Redshift', 'After Effects', 'Houdini'],
+    role: 'Direction, FX, Animation',
+  },
+  {
+    id: 'w6',
+    title: 'Biconomy — Network',
+    client: 'Biconomy',
+    category: 'Web3 / Explainer',
+    year: '2025',
+    driveId: '1fZn4ZGandG5WfNQbhDwYZaWrpT0ijhb2', // Biconomy_Video_7.1.mp4
+    color: '#1a120a',
+    aspect: 'aspect-[9/16]',
+    challenge: 'Explain Biconomy’s account abstraction stack in 60 seconds without flattening it into a flowchart.',
+    outcome: 'Used as the technical hero film for partner pitches and developer outreach.',
+    tools: ['Cinema 4D', 'After Effects'],
+    role: 'Direction, Animation',
+  },
+  {
+    id: 'w7',
+    title: 'Bifrost — Network Motion',
+    client: 'Bifrost',
+    category: 'Web3 / Brand Film',
+    year: '2025',
+    driveId: '1M7h6EoJgnDhyGg1r1zo25wfBGct_anVq', // Bifrost_Video_3(Final)_6.mp4
+    color: '#1f0a14',
+    aspect: 'aspect-[16/9]',
+    challenge: 'Lift Bifrost’s liquid staking story above the noise with a film that feels like infrastructure poetry.',
+    outcome: 'Featured in the launch campaign and across category content.',
+    tools: ['Houdini', 'Cinema 4D', 'After Effects'],
+    role: 'Direction, FX, Animation',
+  },
 ];
 
-/* CUSTOM CURSOR */
+/* -----------------------------------------------------------
+   CUSTOM CURSOR
+----------------------------------------------------------- */
 function CustomCursor() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
@@ -63,6 +186,7 @@ function CustomCursor() {
     const over = (e) => {
       const t = e.target;
       if (t.closest && t.closest('[data-cursor="view"]')) setVariant('view');
+      else if (t.closest && t.closest('[data-cursor="play"]')) setVariant('play');
       else if (t.closest && t.closest('[data-cursor="link"]')) setVariant('link');
       else setVariant('default');
     };
@@ -74,7 +198,8 @@ function CustomCursor() {
     };
   }, [x, y]);
 
-  const size = variant === 'view' ? 96 : variant === 'link' ? 44 : 14;
+  const size = variant === 'view' || variant === 'play' ? 96 : variant === 'link' ? 44 : 14;
+  const label = variant === 'view' ? 'View' : variant === 'play' ? 'Play' : '';
 
   return (
     <motion.div
@@ -86,13 +211,15 @@ function CustomCursor() {
         transition={{ type: 'spring', stiffness: 350, damping: 28 }}
         className="rounded-full bg-white flex items-center justify-center text-black text-[10px] font-medium tracking-wider uppercase"
       >
-        {variant === 'view' && <span>View</span>}
+        {label}
       </motion.div>
     </motion.div>
   );
 }
 
-/* MAGNETIC */
+/* -----------------------------------------------------------
+   MAGNETIC
+----------------------------------------------------------- */
 function Magnetic({ children, strength = 0.35, className = '' }) {
   const ref = useRef(null);
   const x = useMotionValue(0);
@@ -113,51 +240,14 @@ function Magnetic({ children, strength = 0.35, className = '' }) {
   );
 }
 
-/* IN-VIEW VIDEO */
-function InViewVideo({ src, className = '', ...rest }) {
-  const ref = useRef(null);
-  useEffect(() => {
-    const el = ref.current; if (!el) return;
-    // Try playing once mounted
-    const tryPlay = () => {
-      const p = el.play();
-      if (p && typeof p.catch === 'function') p.catch(() => {});
-    };
-    tryPlay();
-
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          tryPlay();
-        } else {
-          try { el.pause(); } catch (e) {}
-        }
-      });
-    }, { threshold: 0.05, rootMargin: '200px' });
-    io.observe(el);
-    return () => io.disconnect();
-  }, [src]);
-  return (
-    <video
-      ref={ref}
-      src={src}
-      muted
-      loop
-      autoPlay
-      playsInline
-      preload="auto"
-      className={className}
-      {...rest}
-    />
-  );
-}
-
-/* FLOATING CARD */
+/* -----------------------------------------------------------
+   FLOATING HERO CARD — Behance cover image with cursor 3D
+----------------------------------------------------------- */
 function FloatingCard({ data, mouseX, mouseY, index }) {
-  const rotY = useTransform(mouseX, [-1, 1], [-18, 18]);
+  const rotY = useTransform(mouseX, [-1, 1], [-16, 16]);
   const rotX = useTransform(mouseY, [-1, 1], [12, -12]);
-  const tx = useTransform(mouseX, [-1, 1], [index % 2 === 0 ? -24 : 24, index % 2 === 0 ? 24 : -24]);
-  const ty = useTransform(mouseY, [-1, 1], [-16, 16]);
+  const tx = useTransform(mouseX, [-1, 1], [index % 2 === 0 ? -22 : 22, index % 2 === 0 ? 22 : -22]);
+  const ty = useTransform(mouseY, [-1, 1], [-14, 14]);
   const sRotX = useSpring(rotX, { stiffness: 60, damping: 18, mass: 0.6 });
   const sRotY = useSpring(rotY, { stiffness: 60, damping: 18, mass: 0.6 });
   const sTx = useSpring(tx, { stiffness: 40, damping: 14, mass: 0.5 });
@@ -165,7 +255,11 @@ function FloatingCard({ data, mouseX, mouseY, index }) {
   const { top, left, right, bottom, w, h, rot, z } = data.style;
 
   return (
-    <motion.div
+    <motion.a
+      href={data.href}
+      target="_blank"
+      rel="noopener noreferrer"
+      data-cursor="view"
       initial={{ opacity: 0, y: 60, scale: 0.9 }}
       animate={{ opacity: 1, y: 0, scale: 1 }}
       transition={{ delay: 0.5 + index * 0.12, duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
@@ -176,15 +270,27 @@ function FloatingCard({ data, mouseX, mouseY, index }) {
         rotate: rot,
         transformStyle: 'preserve-3d',
       }}
-      className="absolute hidden md:block rounded-2xl overflow-hidden glow border border-white/10 bg-white/[0.02]"
+      className="absolute hidden md:block rounded-2xl overflow-hidden glow border border-white/10 bg-white/[0.02] group"
     >
-      <InViewVideo src={data.src} className="w-full h-full object-cover" />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent pointer-events-none" />
-    </motion.div>
+      <img
+        src={data.cover}
+        alt={data.title}
+        loading="lazy"
+        draggable="false"
+        className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/10 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 p-4 pointer-events-none">
+        <div className="text-[9px] uppercase tracking-[0.25em] text-white/70">{data.category}</div>
+        <div className="text-sm text-white font-light mt-0.5">{data.title}</div>
+      </div>
+    </motion.a>
   );
 }
 
-/* HERO */
+/* -----------------------------------------------------------
+   HERO
+----------------------------------------------------------- */
 function Hero() {
   const heroRef = useRef(null);
   const mouseX = useMotionValue(0);
@@ -211,12 +317,17 @@ function Hero() {
       </div>
 
       <div className="absolute inset-0">
-        {HERO_REELS.map((r, i) => (
-          <FloatingCard key={r.id} data={r} mouseX={mouseX} mouseY={mouseY} index={i} />
+        {BEHANCE.map((b, i) => (
+          <FloatingCard key={b.id} data={b} mouseX={mouseX} mouseY={mouseY} index={i} />
         ))}
       </div>
 
-      <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 pt-[42vh] md:pt-[38vh] text-center">
+      <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 pt-[42vh] md:pt-[38vh] text-center pointer-events-none">
+        {/* Subtle blur halo behind headline */}
+        <div className="absolute left-1/2 top-[34vh] md:top-[30vh] -translate-x-1/2 w-[92vw] md:w-[68vw] h-[50vh] md:h-[52vh] pointer-events-none -z-10">
+          <div className="absolute inset-0 rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(6,6,6,0.55)_0%,rgba(6,6,6,0.32)_30%,rgba(6,6,6,0.12)_55%,rgba(6,6,6,0)_80%)] backdrop-blur-2xl" />
+        </div>
+
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -224,10 +335,10 @@ function Hero() {
           className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur text-[10px] uppercase tracking-[0.25em] text-white/60 mb-8"
         >
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-          Booking Q3 · 2025
+          Available · Bangalore, India
         </motion.div>
 
-        <h1 className="text-[14vw] md:text-[7.5vw] leading-[0.9] tracking-[-0.03em] font-light">
+        <h1 className="text-[12vw] md:text-[7.5vw] leading-[0.9] tracking-[-0.03em] font-light">
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: '110%' }}
@@ -256,14 +367,14 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.7 }}
           className="mt-8 max-w-xl mx-auto text-white/55 text-base md:text-lg leading-relaxed"
         >
-          I direct cinematic product films and motion systems for SaaS, AI and Web3 companies preparing to be noticed — and remembered.
+          I’m Sumit — a motion graphics designer & filmmaker with 7+ years building product films and motion systems for SaaS, AI and Web3 brands.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.85 }}
-          className="mt-10 flex flex-wrap items-center justify-center gap-4"
+          className="mt-10 flex flex-wrap items-center justify-center gap-4 pointer-events-auto"
         >
           <Magnetic strength={0.4}>
             <a href="#work" data-cursor="link" className="group inline-flex items-center gap-3 rounded-full bg-white text-black pl-6 pr-2 py-2 text-sm font-medium hover:bg-white/90 transition">
@@ -294,7 +405,9 @@ function Hero() {
   );
 }
 
-/* MARQUEE */
+/* -----------------------------------------------------------
+   MARQUEE
+----------------------------------------------------------- */
 function Marquee() {
   const items = ['SaaS', 'AI', 'Web3', 'Product Film', 'Brand Motion', 'Direction', 'System Design'];
   return (
@@ -311,7 +424,9 @@ function Marquee() {
   );
 }
 
-/* REVEAL LINE */
+/* -----------------------------------------------------------
+   REVEAL LINE
+----------------------------------------------------------- */
 function RevealLine({ children, delay = 0 }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: '-10% 0px' });
@@ -329,7 +444,9 @@ function RevealLine({ children, delay = 0 }) {
   );
 }
 
-/* ABOUT */
+/* -----------------------------------------------------------
+   ABOUT
+----------------------------------------------------------- */
 function About() {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] });
@@ -352,35 +469,38 @@ function About() {
   );
 }
 
-/* PROJECT CARD */
-function ProjectCard({ project, onOpen }) {
-  const spanClass =
-    project.span === 'tall' ? 'md:row-span-2 aspect-[3/4]' :
-    project.span === 'wide' ? 'md:col-span-2 aspect-[16/9]' :
-    project.span === 'square' ? 'aspect-square' :
-    'aspect-[4/5]';
-
+/* -----------------------------------------------------------
+   WORK CARD  (Drive thumbnail, opens case study)
+----------------------------------------------------------- */
+function WorkCard({ project, onOpen }) {
   return (
     <motion.div
       layoutId={`card-${project.id}`}
       onClick={() => onOpen(project)}
-      data-cursor="view"
-      className={`masonry-item group relative overflow-hidden rounded-2xl border border-white/[0.06] ${spanClass}`}
+      data-cursor="play"
+      className={`relative overflow-hidden rounded-2xl border border-white/[0.06] mb-5 md:mb-6 break-inside-avoid ${project.aspect} group`}
       style={{ backgroundColor: project.color }}
       whileHover={{ y: -4 }}
-      transition={{ type: 'spring', stiffness: 200, damping: 20 }}
+      transition={{ type: 'spring', stiffness: 200, damping: 22 }}
     >
       <motion.div layoutId={`media-${project.id}`} className="absolute inset-0">
-        <InViewVideo src={project.src} className="w-full h-full object-cover" />
+        <img
+          src={driveThumb(project.driveId, 1600)}
+          alt={project.title}
+          loading="lazy"
+          draggable="false"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        />
       </motion.div>
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent opacity-90 pointer-events-none" />
 
-      <div className="absolute inset-0 flex flex-col justify-end p-6 pointer-events-none">
+      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent pointer-events-none" />
+
+      <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 pointer-events-none">
         <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.25em] text-white/60 mb-3">
           <span>{project.category}</span>
           <span>{project.year}</span>
         </div>
-        <motion.h3 layoutId={`title-${project.id}`} className="text-xl md:text-2xl font-light tracking-tight text-white">
+        <motion.h3 layoutId={`title-${project.id}`} className="text-xl md:text-2xl font-light tracking-tight text-white leading-tight">
           {project.title}
         </motion.h3>
         <motion.div layoutId={`client-${project.id}`} className="text-sm text-white/50 mt-1">
@@ -388,22 +508,20 @@ function ProjectCard({ project, onOpen }) {
         </motion.div>
       </div>
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.85 }}
-        whileHover={{ opacity: 1, scale: 1 }}
-        className="absolute top-5 right-5 w-10 h-10 rounded-full bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center text-white pointer-events-none"
-      >
+      <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center text-white pointer-events-none">
         <Plus className="w-4 h-4" />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
 
-/* PORTFOLIO */
-function Portfolio({ onOpen }) {
+/* -----------------------------------------------------------
+   WORK SECTION  —  CSS columns masonry (truly aligned)
+----------------------------------------------------------- */
+function Work({ onOpen }) {
   return (
     <section id="work" className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
-      <div className="flex items-end justify-between mb-12 md:mb-16">
+      <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6">
         <div>
           <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">02 — Selected Work</div>
           <h2 className="text-4xl md:text-6xl font-light tracking-tight">
@@ -411,20 +529,23 @@ function Portfolio({ onOpen }) {
             <span className="serif italic text-white/70">moments.</span>
           </h2>
         </div>
-        <div className="hidden md:block text-sm text-white/40 max-w-xs">
-          A rolling selection. Hover to peek, click to step inside the case study.
+        <div className="text-sm text-white/40 max-w-xs">
+          A rolling selection from recent SaaS, AI and Web3 work. Click any film to play in full.
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 auto-rows-[260px] md:auto-rows-[280px]">
-        {PROJECTS.map((p) => (
-          <ProjectCard key={p.id} project={p} onOpen={onOpen} />
+
+      <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 md:gap-6">
+        {WORK.map((p) => (
+          <WorkCard key={p.id} project={p} onOpen={onOpen} />
         ))}
       </div>
     </section>
   );
 }
 
-/* CASE STUDY */
+/* -----------------------------------------------------------
+   CASE STUDY MODAL  (iframe-embeds the Drive video)
+----------------------------------------------------------- */
 function CaseStudy({ project, onClose }) {
   useEffect(() => {
     document.body.style.overflow = 'hidden';
@@ -446,13 +567,19 @@ function CaseStudy({ project, onClose }) {
       <div className="max-w-7xl mx-auto px-6 pt-24 pb-32">
         <motion.div
           layoutId={`card-${project.id}`}
-          className="relative w-full aspect-[16/9] rounded-3xl overflow-hidden border border-white/10"
+          className="relative w-full aspect-video rounded-3xl overflow-hidden border border-white/10 bg-black"
           style={{ backgroundColor: project.color }}
         >
           <motion.div layoutId={`media-${project.id}`} className="absolute inset-0">
-            <InViewVideo src={project.src} className="w-full h-full object-cover" />
+            <iframe
+              src={drivePreview(project.driveId)}
+              allow="autoplay; encrypted-media; fullscreen"
+              allowFullScreen
+              className="w-full h-full"
+              style={{ border: 0 }}
+              title={project.title}
+            />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
         </motion.div>
 
         <div className="grid md:grid-cols-12 gap-10 mt-12">
@@ -494,22 +621,48 @@ function CaseStudy({ project, onClose }) {
                 <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-2">Year</div>
                 <div className="text-white/90">{project.year}</div>
               </div>
-              <Magnetic strength={0.3}>
-                <a href="#contact" data-cursor="link" onClick={onClose} className="inline-flex items-center gap-3 rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-white/90 transition">
-                  Discuss a project like this <ArrowUpRight className="w-4 h-4" />
-                </a>
-              </Magnetic>
+              <div className="flex flex-col gap-3">
+                <Magnetic strength={0.25}>
+                  <a
+                    href={driveOpen(project.driveId)}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    data-cursor="link"
+                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm text-white/80 hover:text-white hover:border-white/30 transition"
+                  >
+                    Open in Drive <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </Magnetic>
+                <Magnetic strength={0.3}>
+                  <a
+                    href="#contact"
+                    data-cursor="link"
+                    onClick={onClose}
+                    className="inline-flex items-center gap-3 rounded-full bg-white text-black px-5 py-3 text-sm font-medium hover:bg-white/90 transition"
+                  >
+                    Discuss a project like this <ArrowUpRight className="w-4 h-4" />
+                  </a>
+                </Magnetic>
+              </div>
             </div>
           </motion.aside>
         </div>
 
         <motion.div initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.75, duration: 0.8 }} className="mt-24">
-          <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-6">Process Stills</div>
-          <div className="grid md:grid-cols-2 gap-6">
-            {PROJECTS.filter((p) => p.id !== project.id).slice(0, 2).map((p) => (
-              <div key={p.id} className="aspect-video rounded-2xl overflow-hidden border border-white/10">
-                <InViewVideo src={p.src} className="w-full h-full object-cover" />
-              </div>
+          <div className="text-[10px] uppercase tracking-[0.25em] text-white/40 mb-6">More from the studio</div>
+          <div className="grid md:grid-cols-3 gap-6">
+            {WORK.filter((p) => p.id !== project.id).slice(0, 3).map((p) => (
+              <button
+                key={p.id}
+                onClick={() => { onClose(); setTimeout(() => onClose && p, 250); }}
+                className="text-left group"
+              >
+                <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
+                  <img src={driveThumb(p.driveId, 800)} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                </div>
+                <div className="mt-3 text-sm text-white">{p.title}</div>
+                <div className="text-xs text-white/40">{p.client}</div>
+              </button>
             ))}
           </div>
         </motion.div>
@@ -518,7 +671,9 @@ function CaseStudy({ project, onClose }) {
   );
 }
 
-/* CONTACT */
+/* -----------------------------------------------------------
+   CONTACT
+----------------------------------------------------------- */
 function Contact() {
   return (
     <section id="contact" className="relative max-w-7xl mx-auto px-6 py-32 md:py-48 text-center">
@@ -530,8 +685,8 @@ function Contact() {
 
       <div className="mt-12 flex flex-col md:flex-row gap-4 items-center justify-center">
         <Magnetic strength={0.35}>
-          <a href="mailto:hello@atlasmori.studio" data-cursor="link" className="group inline-flex items-center gap-3 rounded-full bg-white text-black pl-6 pr-2 py-2 text-sm font-medium hover:bg-white/90 transition">
-            hello@atlasmori.studio
+          <a href="mailto:hello@shutterbutter.studio" data-cursor="link" className="group inline-flex items-center gap-3 rounded-full bg-white text-black pl-6 pr-2 py-2 text-sm font-medium hover:bg-white/90 transition">
+            hello@shutterbutter.studio
             <span className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white group-hover:rotate-45 transition-transform duration-500">
               <ArrowUpRight className="w-4 h-4" />
             </span>
@@ -539,17 +694,17 @@ function Contact() {
         </Magnetic>
         <span className="text-white/30 text-sm">or</span>
         <Magnetic strength={0.25}>
-          <a href="#" data-cursor="link" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 hover:text-white hover:border-white/30 transition">
-            Book a 20-min intro <ArrowUpRight className="w-4 h-4" />
+          <a href="https://www.behance.net/Sumitlohar97" target="_blank" rel="noopener noreferrer" data-cursor="link" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 hover:text-white hover:border-white/30 transition">
+            Full Behance <ArrowUpRight className="w-4 h-4" />
           </a>
         </Magnetic>
       </div>
 
       <div className="mt-24 grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
         {[
-          { k: '47', v: 'Films shipped' },
-          { k: '14', v: 'Brand systems' },
-          { k: '6yr', v: 'Studio practice' },
+          { k: '7yr', v: 'Practice' },
+          { k: '40+', v: 'Films shipped' },
+          { k: 'IN', v: 'Bangalore, India' },
         ].map((s) => (
           <div key={s.v} className="border-t border-white/10 pt-6 text-left">
             <div className="text-4xl serif italic text-white">{s.k}</div>
@@ -561,7 +716,9 @@ function Contact() {
   );
 }
 
-/* NAV */
+/* -----------------------------------------------------------
+   NAV
+----------------------------------------------------------- */
 function Nav() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -579,16 +736,16 @@ function Nav() {
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <a href="#" data-cursor="link" className="flex items-center gap-2">
           <span className="w-2 h-2 rounded-full bg-white" />
-          <span className="text-sm tracking-[0.2em] uppercase">Atlas Mori</span>
+          <span className="text-sm tracking-[0.2em] uppercase">Sumit Lohar</span>
         </a>
         <nav className="hidden md:flex items-center gap-10 text-sm text-white/60">
           <a href="#work" data-cursor="link" className="hover:text-white transition">Work</a>
-          <a href="#" data-cursor="link" className="hover:text-white transition">Studio</a>
-          <a href="#" data-cursor="link" className="hover:text-white transition">Process</a>
+          <a href="https://www.behance.net/Sumitlohar97" target="_blank" rel="noopener noreferrer" data-cursor="link" className="hover:text-white transition">Behance</a>
+          <a href="#contact" data-cursor="link" className="hover:text-white transition">Contact</a>
         </nav>
         <Magnetic strength={0.3}>
           <a href="#contact" data-cursor="link" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-white/80 hover:text-white hover:border-white/30 transition">
-            Contact <ArrowUpRight className="w-3.5 h-3.5" />
+            Hire <ArrowUpRight className="w-3.5 h-3.5" />
           </a>
         </Magnetic>
       </div>
@@ -596,19 +753,23 @@ function Nav() {
   );
 }
 
-/* FOOTER */
+/* -----------------------------------------------------------
+   FOOTER
+----------------------------------------------------------- */
 function Footer() {
   return (
     <footer className="relative border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.25em] text-white/40">
-        <div>© 2025 — Atlas Mori Studio</div>
+        <div>© 2025 — Sumit Lohar · Shutter Butter Studio</div>
         <div>Made in 60fps · Direction · Motion · Sound</div>
       </div>
     </footer>
   );
 }
 
-/* PAGE ENTRY */
+/* -----------------------------------------------------------
+   PAGE ENTRY
+----------------------------------------------------------- */
 function PageEntry() {
   const [done, setDone] = useState(false);
   useEffect(() => {
@@ -625,8 +786,8 @@ function PageEntry() {
           className="fixed inset-0 z-[300] bg-black flex items-center justify-center"
         >
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0 }} transition={{ duration: 0.6, delay: 0.1 }} className="text-center">
-            <div className="serif italic text-5xl md:text-7xl text-white">Atlas Mori</div>
-            <div className="mt-3 text-[10px] uppercase tracking-[0.4em] text-white/40">Motion Studio</div>
+            <div className="serif italic text-5xl md:text-7xl text-white">Sumit Lohar</div>
+            <div className="mt-3 text-[10px] uppercase tracking-[0.4em] text-white/40">Motion · Film · Direction</div>
           </motion.div>
         </motion.div>
       )}
@@ -634,7 +795,9 @@ function PageEntry() {
   );
 }
 
-/* APP */
+/* -----------------------------------------------------------
+   APP
+----------------------------------------------------------- */
 function App() {
   const [active, setActive] = useState(null);
 
@@ -666,7 +829,7 @@ function App() {
         <Hero />
         <Marquee />
         <About />
-        <Portfolio onOpen={setActive} />
+        <Work onOpen={setActive} />
         <Contact />
         <Footer />
 
