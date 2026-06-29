@@ -55,15 +55,6 @@ const BEHANCE = [
     href: 'https://www.behance.net/gallery/242815819/BASE-Motiongraphics-Explainer',
     style: { bottom: '8%', right: '14%', w: 270, h: 340, rot: -5, z: 2 },
   },
-  {
-    id: 'b5',
-    title: 'Beratrax',
-    client: 'Beratrax',
-    category: 'Web3 / UI Motion',
-    cover: 'https://mir-s3-cdn-cf.behance.net/projects/404/ce332f243268695.Y3JvcCwxMDA3LDc4OCwxOTcsMA.jpg',
-    href: 'https://www.behance.net/gallery/243268695/Beratrax',
-    style: { top: '36%', left: '42%', w: 230, h: 290, rot: 2, z: 5 },
-  },
 ];
 
 const driveThumb = (id, w = 1600) => `https://lh3.googleusercontent.com/d/${id}=w${w}`;
@@ -322,25 +313,23 @@ function Hero() {
         ))}
       </div>
 
-      <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 pt-[42vh] md:pt-[38vh] text-center pointer-events-none">
-        {/* Layered blur + feathered shadow halo behind headline */}
-        <div className="absolute left-1/2 top-[30vh] md:top-[26vh] -translate-x-1/2 w-[95vw] md:w-[76vw] h-[58vh] md:h-[60vh] pointer-events-none -z-10">
-          {/* Outer feathered backdrop blur */}
-          <div
-            className="absolute inset-0 backdrop-blur-2xl"
-            style={{
-              WebkitMaskImage:
-                'radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 88%)',
-              maskImage:
-                'radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 88%)',
-            }}
-          />
-          {/* Soft dark wash for legibility */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,6,6,0.78)_0%,rgba(6,6,6,0.55)_25%,rgba(6,6,6,0.30)_45%,rgba(6,6,6,0.12)_65%,rgba(6,6,6,0)_85%)]" />
-          {/* Inner subtle vignette glow */}
-          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,rgba(255,255,255,0)_50%)]" />
-        </div>
+      {/* Frosted blur adjustment layer behind hero text — permanently visible, seamlessly feathered */}
+      <div
+        className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110vw] md:w-[80vw] h-[70vh] md:h-[64vh] pointer-events-none z-[5]"
+        aria-hidden
+      >
+        <div
+          className="absolute inset-0 backdrop-blur-xl"
+          style={{
+            WebkitMaskImage:
+              'radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.42) 25%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0) 92%)',
+            maskImage:
+              'radial-gradient(ellipse at center, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.42) 25%, rgba(0,0,0,0.22) 50%, rgba(0,0,0,0.08) 72%, rgba(0,0,0,0) 92%)',
+          }}
+        />
+      </div>
 
+      <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 pt-[42vh] md:pt-[38vh] text-center pointer-events-none">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -351,10 +340,7 @@ function Hero() {
           Available · Bangalore, India
         </motion.div>
 
-        <h1
-          className="text-[12vw] md:text-[7.5vw] leading-[0.9] tracking-[-0.03em] font-light"
-          style={{ textShadow: '0 6px 40px rgba(0,0,0,0.65), 0 2px 8px rgba(0,0,0,0.55)' }}
-        >
+        <h1 className="text-[12vw] md:text-[7.5vw] leading-[0.9] tracking-[-0.03em] font-light">
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: '110%' }}
