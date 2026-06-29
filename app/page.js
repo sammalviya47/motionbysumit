@@ -323,9 +323,22 @@ function Hero() {
       </div>
 
       <motion.div style={{ y: textY, opacity: textOpacity }} className="relative z-10 max-w-7xl mx-auto px-6 pt-[42vh] md:pt-[38vh] text-center pointer-events-none">
-        {/* Subtle blur halo behind headline */}
-        <div className="absolute left-1/2 top-[34vh] md:top-[30vh] -translate-x-1/2 w-[92vw] md:w-[68vw] h-[50vh] md:h-[52vh] pointer-events-none -z-10">
-          <div className="absolute inset-0 rounded-[50%] bg-[radial-gradient(ellipse_at_center,rgba(6,6,6,0.55)_0%,rgba(6,6,6,0.32)_30%,rgba(6,6,6,0.12)_55%,rgba(6,6,6,0)_80%)] backdrop-blur-2xl" />
+        {/* Layered blur + feathered shadow halo behind headline */}
+        <div className="absolute left-1/2 top-[30vh] md:top-[26vh] -translate-x-1/2 w-[95vw] md:w-[76vw] h-[58vh] md:h-[60vh] pointer-events-none -z-10">
+          {/* Outer feathered backdrop blur */}
+          <div
+            className="absolute inset-0 backdrop-blur-2xl"
+            style={{
+              WebkitMaskImage:
+                'radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 88%)',
+              maskImage:
+                'radial-gradient(ellipse at center, rgba(0,0,0,1) 0%, rgba(0,0,0,0.95) 30%, rgba(0,0,0,0.6) 55%, rgba(0,0,0,0.25) 72%, rgba(0,0,0,0) 88%)',
+            }}
+          />
+          {/* Soft dark wash for legibility */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(6,6,6,0.78)_0%,rgba(6,6,6,0.55)_25%,rgba(6,6,6,0.30)_45%,rgba(6,6,6,0.12)_65%,rgba(6,6,6,0)_85%)]" />
+          {/* Inner subtle vignette glow */}
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.04)_0%,rgba(255,255,255,0)_50%)]" />
         </div>
 
         <motion.div
@@ -338,7 +351,10 @@ function Hero() {
           Available · Bangalore, India
         </motion.div>
 
-        <h1 className="text-[12vw] md:text-[7.5vw] leading-[0.9] tracking-[-0.03em] font-light">
+        <h1
+          className="text-[12vw] md:text-[7.5vw] leading-[0.9] tracking-[-0.03em] font-light"
+          style={{ textShadow: '0 6px 40px rgba(0,0,0,0.65), 0 2px 8px rgba(0,0,0,0.55)' }}
+        >
           <span className="block overflow-hidden">
             <motion.span
               initial={{ y: '110%' }}
