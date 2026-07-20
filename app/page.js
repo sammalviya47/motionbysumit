@@ -59,15 +59,17 @@ const BEHANCE = [
 
 /* Behance CDN media (real project banners from sumit's Behance) */
 const B = 'https://mir-s3-cdn-cf.behance.net/project_modules';
+const COVER = 'https://mir-s3-cdn-cf.behance.net/projects/404';
 
 const WORK = [
   {
     id: 'w1',
+    pid: '245007383',
     title: 'Sarvam AI — Product Launch Videos',
     client: 'Sarvam AI',
     category: 'AI / Product Films',
     year: '2025',
-    banner: `${B}/1400/808231245007383.69a4563384063.gif`,
+    banner: `${COVER}/d24355245007383.Y3JvcCwxMDgwLDg0NCwwLDExNw.png`,
     href: 'https://www.behance.net/gallery/245007383/Sarvam-AI-Product-Launch-Videos',
     aspect: 'aspect-[16/10]',
     color: '#1a1a2e',
@@ -78,11 +80,12 @@ const WORK = [
   },
   {
     id: 'w2',
+    pid: '245035043',
     title: 'Stylumia — Orbix Launch',
     client: 'Stylumia AI',
     category: 'AI / Retail / GenAI',
     year: '2025',
-    banner: `${B}/1400/0656e9245035043.69a51af491c09.gif`,
+    banner: `${COVER}/382dc2245035043.Y3JvcCw4MDgsNjMyLDAsMA.jpg`,
     href: 'https://www.behance.net/gallery/245035043/Stylumia',
     aspect: 'aspect-[9/16]',
     color: '#0a1a2a',
@@ -93,11 +96,12 @@ const WORK = [
   },
   {
     id: 'w3',
+    pid: '244958177',
     title: 'Nerve AI — Product Launch Video',
     client: 'Nerve',
     category: 'AI / Storytelling Film',
     year: '2025',
-    banner: `${B}/1400_webp/1b5148244958177.69a2cc2336342.png`,
+    banner: `${COVER}/e6819c244958177.Y3JvcCw5OTksNzgyLDQ2MCww.png`,
     href: 'https://www.behance.net/gallery/244958177/Nerve-AI-Product-Launch-Video',
     aspect: 'aspect-[16/9]',
     color: '#0d0a24',
@@ -108,11 +112,12 @@ const WORK = [
   },
   {
     id: 'w4',
+    pid: '244951459',
     title: 'Assurekit — Website Motion',
     client: 'Assurekit',
     category: 'SaaS / UI Motion / GIFs',
     year: '2025',
-    banner: `${B}/max_1200_webp/e59aad244951459.69a29e342ab18.gif`,
+    banner: `${COVER}/f25f29244951459.Y3JvcCwxMzUxLDEwNTcsMCwxMDA.png`,
     href: 'https://www.behance.net/gallery/244951459/Assurekit-Website-Motion-Graphics-GIF-Animations',
     aspect: 'aspect-[16/10]',
     color: '#1f0a14',
@@ -123,6 +128,7 @@ const WORK = [
   },
   {
     id: 'w5',
+    pid: '242815819',
     title: 'BASE — Motiongraphics Explainer',
     client: 'Coinbase · BASE',
     category: 'Web3 / Explainer',
@@ -138,6 +144,7 @@ const WORK = [
   },
   {
     id: 'w6',
+    pid: '243268695',
     title: 'Beratrax — UI Motion',
     client: 'Beratrax',
     category: 'Web3 / UI Motion',
@@ -153,6 +160,7 @@ const WORK = [
   },
   {
     id: 'w7',
+    pid: '243270555',
     title: 'App UI Overview — Motion',
     client: 'Confidential',
     category: 'SaaS / UI Motion',
@@ -168,11 +176,12 @@ const WORK = [
   },
   {
     id: 'w8',
+    pid: '252230717',
     title: 'KOSH Money — Global Finance Launch',
     client: 'KOSH · Spacekayak',
     category: 'Fintech / Product Film',
     year: '2026',
-    banner: `${B}/1400_webp/5a30ab252230717.6a4a84a888200.jpg`,
+    banner: `${COVER}/b40888252230717.Y3JvcCw4MDgsNjMyLDAsMA.jpg`,
     href: 'https://www.behance.net/gallery/252230717/KOSH-Money-Global-Finance-Product-Launch-Film',
     aspect: 'aspect-[16/9]',
     color: '#0a1614',
@@ -183,11 +192,12 @@ const WORK = [
   },
   {
     id: 'w9',
+    pid: '253025327',
     title: 'Polygon Gigagas — Roadmap Motion',
     client: 'Polygon · Spacekayak',
     category: 'Web3 / Motion Presentation',
     year: '2026',
-    banner: `${B}/1400_webp/c98d30253025327.6a5e65be04af9.png`,
+    banner: `${COVER}/93cd40253025327.Y3JvcCw5NjIsNzUyLDQ3OCwxNjQ.png`,
     href: 'https://www.behance.net/gallery/253025327/Polygon-Gigagas-Roadmap-Motion-Presentation',
     aspect: 'aspect-[16/10]',
     color: '#140a28',
@@ -198,11 +208,12 @@ const WORK = [
   },
   {
     id: 'w10',
+    pid: '253023237',
     title: 'FO-X — Launch Event Opening',
     client: 'FO-X · Fluid Studio',
     category: 'Web3 / Event Opening',
     year: '2026',
-    banner: `${B}/1400_webp/265793253023237.6a5e5c42bffe4.png`,
+    banner: `${COVER}/9577cb253023237.Y3JvcCwxMjI3LDk2MCwzNDYsMA.png`,
     href: 'https://www.behance.net/gallery/253023237/FO-X-Launch-Event-Opening',
     aspect: 'aspect-[16/9]',
     color: '#0a1024',
@@ -213,11 +224,12 @@ const WORK = [
   },
   {
     id: 'w11',
+    pid: '253021697',
     title: 'Pomo — AI Marketing Launch Film',
     client: 'Pomo AI · Spacekayak',
     category: 'AI / SaaS / Launch Film',
     year: '2026',
-    banner: `${B}/1400/3799da253021697.6a5e55afc2320.gif`,
+    banner: `${COVER}/04c53e253021697.Y3JvcCw5MzAsNzI3LDQ4NiwxNzU.png`,
     href: 'https://www.behance.net/gallery/253021697/Pomo',
     aspect: 'aspect-[16/10]',
     color: '#1a1208',
@@ -228,11 +240,12 @@ const WORK = [
   },
   {
     id: 'w12',
+    pid: '253025931',
     title: 'Summer.fi — Intro Animation Concept',
     client: 'Summer.fi (concept)',
     category: 'Web3 / Brand Motion',
     year: '2026',
-    banner: `${B}/1400_webp/4545c6253025931.6a5e684f57bf8.png`,
+    banner: `${COVER}/dd8e2c253025931.Y3JvcCwxMTgwLDkyMywzNjgsNzg.png`,
     href: 'https://www.behance.net/gallery/253025931/Summerfi-Intro-Animation-Concept',
     aspect: 'aspect-[16/9]',
     color: '#241608',
@@ -243,11 +256,12 @@ const WORK = [
   },
   {
     id: 'w13',
+    pid: '253024051',
     title: 'Ewigbyte — Funding Announcement',
     client: 'Ewigbyte · Fluid Studio',
     category: 'Web3 / Social Motion',
     year: '2026',
-    banner: `${B}/1400_webp/7d93b6253024051.6a5e612f02a92.png`,
+    banner: `${COVER}/6256b7253024051.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png`,
     href: 'https://www.behance.net/gallery/253024051/Ewigbyte-Funding-Announcement',
     aspect: 'aspect-[4/5]',
     color: '#0a1428',
@@ -258,11 +272,12 @@ const WORK = [
   },
   {
     id: 'w14',
+    pid: '252221119',
     title: 'QBeast — Website UI Motion',
     client: 'QBeast · Spacekayak',
     category: 'SaaS / UI Motion / GIFs',
     year: '2026',
-    banner: `${B}/max_1200_webp/f9f11c252221119.6a4a46678e822.gif`,
+    banner: `${COVER}/6d3506252221119.Y3JvcCw4MDgsNjMyLDAsMA.jpg`,
     href: 'https://www.behance.net/gallery/252221119/QBeast-Website-UI-Motion-Graphics',
     aspect: 'aspect-[4/5]',
     color: '#0f0f1a',
@@ -992,6 +1007,51 @@ function Work({ onOpen }) {
 }
 
 /* -----------------------------------------------------------
+   BEHANCE VIDEO EMBED  (mounts after layout-morph, fades in on load)
+----------------------------------------------------------- */
+function BehanceVideo({ pid, title }) {
+  const [mounted, setMounted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // Let the shared-layout morph play, then mount the iframe
+    const t = setTimeout(() => setMounted(true), 450);
+    return () => clearTimeout(t);
+  }, [pid]);
+
+  return (
+    <>
+      {mounted && (
+        <iframe
+          src={`https://www.behance.net/embed/project/${pid}?ilo0=1`}
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+          loading="lazy"
+          title={title}
+          onLoad={() => setLoaded(true)}
+          style={{
+            border: 0,
+            transition: 'opacity 700ms cubic-bezier(0.22,1,0.36,1)',
+            opacity: loaded ? 1 : 0,
+          }}
+          className="absolute inset-0 w-full h-full"
+        />
+      )}
+
+      {/* Play affordance while iframe warms up */}
+      {!loaded && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur border border-white/25 flex items-center justify-center">
+            <div className="w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[14px] border-l-white ml-1" />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* -----------------------------------------------------------
    CASE STUDY MODAL  (iframe-embeds the Drive video)
 ----------------------------------------------------------- */
 function CaseStudy({ project, onClose, onOpen }) {
@@ -1038,6 +1098,12 @@ function CaseStudy({ project, onClose, onOpen }) {
               className="w-full h-full object-cover"
             />
           </motion.div>
+
+          {/* Behance video embed — layered on top, fades in on load so the shared-layout
+              banner image morph reads cleanly first. */}
+          {project.pid && (
+            <BehanceVideo pid={project.pid} title={project.title} />
+          )}
         </motion.div>
 
         <div className="grid md:grid-cols-12 gap-10 mt-12">
