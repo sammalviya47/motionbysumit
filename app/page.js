@@ -813,86 +813,6 @@ function ServiceCard({ s, i }) {
 }
 
 /* -----------------------------------------------------------
-   TESTIMONIALS
------------------------------------------------------------ */
-const TESTIMONIALS = [
-  {
-    quote:
-      'Sumit turned a dense product story into a launch film that just clicked. The motion direction gave our AI Summit reveal an entirely different weight.',
-    name: 'Product Team',
-    role: 'Sarvam AI',
-    tag: 'India AI Summit — Launch',
-  },
-  {
-    quote:
-      'The motion GIFs shipped straight into our marketing site with almost zero back-and-forth. Fast, calm, and always on-brand — exactly what a lean team needs.',
-    name: 'Growth Lead',
-    role: 'Assurekit',
-    tag: 'SaaS · Website Motion',
-  },
-  {
-    quote:
-      'From storyboard to final delivery, the entire film felt like it was made by a studio double the size. Nerve’s launch page wouldn’t hit the same without it.',
-    name: 'Founding Team',
-    role: 'Nerve',
-    tag: 'Product Launch Film',
-  },
-];
-
-function Testimonials() {
-  return (
-    <section className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
-      <div className="grid md:grid-cols-12 gap-8 items-end mb-14 md:mb-20">
-        <div className="md:col-span-2">
-          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">05 — Voices</div>
-        </div>
-        <div className="md:col-span-10">
-          <h2 className="text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight font-light">
-            <RevealLine><span className="text-white">Words from the</span></RevealLine>
-            <RevealLine delay={0.1}><span className="serif italic text-white/70">teams I ship with.</span></RevealLine>
-          </h2>
-        </div>
-      </div>
-
-      <div className="grid md:grid-cols-3 gap-5 md:gap-6">
-        {TESTIMONIALS.map((t, i) => (
-          <TestimonialCard key={t.name + i} t={t} i={i} />
-        ))}
-      </div>
-    </section>
-  );
-}
-
-function TestimonialCard({ t, i }) {
-  const cardRef = useRef(null);
-  const inView = useInView(cardRef, { once: true, margin: '-10% 0px' });
-  return (
-    <motion.figure
-      ref={cardRef}
-      initial={{ opacity: 0, y: 40 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.9, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-      className="relative rounded-2xl border border-white/[0.08] bg-white/[0.015] p-8 md:p-10 flex flex-col justify-between min-h-[320px] hover:border-white/20 hover:bg-white/[0.03] transition-colors duration-500"
-    >
-      <div
-        aria-hidden
-        className="absolute top-6 left-8 serif italic text-6xl md:text-7xl leading-none text-white/10 select-none pointer-events-none"
-      >
-        “
-      </div>
-      <blockquote className="relative pt-8 text-lg md:text-xl text-white/85 leading-relaxed font-light">
-        {t.quote}
-      </blockquote>
-      <figcaption className="mt-8 pt-6 border-t border-white/[0.08]">
-        <div className="text-white text-sm">{t.name}</div>
-        <div className="text-white/50 text-xs mt-0.5">{t.role}</div>
-        <div className="mt-3 text-[9px] uppercase tracking-[0.25em] text-white/35">{t.tag}</div>
-      </figcaption>
-    </motion.figure>
-  );
-}
-
-/* -----------------------------------------------------------
    WORK CARD  (Drive thumbnail, opens case study)
 ----------------------------------------------------------- */
 function WorkCard({ project, onOpen }) {
@@ -1111,7 +1031,7 @@ function CaseStudy({ project, onClose, onOpen }) {
 function Contact() {
   return (
     <section id="contact" className="relative max-w-7xl mx-auto px-6 py-32 md:py-48 text-center">
-      <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">06 — Start something</div>
+      <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">05 — Start something</div>
       <h2 className="text-5xl md:text-8xl font-light tracking-tight leading-[0.95]">
         <RevealLine><span className="text-white">Have a launch</span></RevealLine>
         <RevealLine delay={0.1}><span className="serif italic text-white/80">worth remembering?</span></RevealLine>
@@ -1299,7 +1219,6 @@ function App() {
         <Clients />
         <Services />
         <Work onOpen={setActive} />
-        <Testimonials />
         <Contact />
         <Footer />
 
