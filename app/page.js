@@ -478,6 +478,243 @@ function About() {
 }
 
 /* -----------------------------------------------------------
+   CLIENTS  —  typographic client strip
+----------------------------------------------------------- */
+const CLIENTS = [
+  { name: 'Sarvam AI', tag: 'AI' },
+  { name: 'Stylumia', tag: 'Retail AI' },
+  { name: 'Nerve', tag: 'AI' },
+  { name: 'Coinbase · BASE', tag: 'Web3' },
+  { name: 'Assurekit', tag: 'SaaS' },
+  { name: 'Beratrax', tag: 'Web3' },
+  { name: 'Fluid Studio', tag: 'Studio' },
+  { name: 'HyperSign', tag: 'Web3' },
+];
+
+function Clients() {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-15% 0px' });
+  return (
+    <section ref={ref} className="relative border-y border-white/[0.06] bg-black/40">
+      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
+        <div className="grid md:grid-cols-12 gap-8 items-end mb-10 md:mb-14">
+          <div className="md:col-span-2">
+            <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">02 — Trust</div>
+          </div>
+          <div className="md:col-span-10">
+            <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white/85 leading-tight">
+              <RevealLine><span>Trusted by teams shipping</span></RevealLine>
+              <RevealLine delay={0.08}><span className="serif italic text-white/60">AI, SaaS &amp; Web3 products.</span></RevealLine>
+            </h2>
+          </div>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-white/[0.06]">
+          {CLIENTS.map((c, i) => (
+            <motion.div
+              key={c.name}
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.9, delay: 0.05 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+              className={`group relative px-4 md:px-6 py-8 md:py-10 border-b border-r border-white/[0.06] ${
+                i % 4 === 3 ? 'md:border-r-0' : ''
+              } ${i % 2 === 1 ? 'border-r-0 md:border-r' : ''} hover:bg-white/[0.02] transition-colors duration-500`}
+            >
+              <div className="text-[9px] uppercase tracking-[0.3em] text-white/30 mb-2">{c.tag}</div>
+              <div className="text-lg md:text-2xl font-light tracking-tight text-white/85 group-hover:text-white transition">
+                {c.name}
+              </div>
+              <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+}
+
+/* -----------------------------------------------------------
+   SERVICES
+----------------------------------------------------------- */
+const SERVICES = [
+  {
+    n: '01',
+    title: 'Product Films',
+    accent: 'launch-ready.',
+    desc: 'Narrative launch films, feature reveals and hero videos — engineered to move product, not just pixels.',
+    tags: ['Direction', 'Storyboard', 'Animation', 'Edit'],
+  },
+  {
+    n: '02',
+    title: 'UI Motion',
+    accent: 'kinetic & precise.',
+    desc: 'Product-accurate UI animations, loopable GIFs and motion systems that ship straight into websites and marketing surfaces.',
+    tags: ['UI Motion', 'GIF Systems', 'After Effects'],
+  },
+  {
+    n: '03',
+    title: 'Brand Motion',
+    accent: 'living identities.',
+    desc: 'Motion identity systems — logo animations, transitions, and reusable motion tokens that scale across a brand.',
+    tags: ['Identity', 'Systems', 'Guidelines'],
+  },
+  {
+    n: '04',
+    title: 'Explainers',
+    accent: 'complexity → clarity.',
+    desc: 'Explainer films for Web3, AI and infra products — turning technical narratives into human, watchable stories.',
+    tags: ['Web3', 'AI', 'Illustration'],
+  },
+];
+
+function Services() {
+  const ref = useRef(null);
+  return (
+    <section id="services" ref={ref} className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div className="grid md:grid-cols-12 gap-8 items-end mb-14 md:mb-20">
+        <div className="md:col-span-2">
+          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">03 — Services</div>
+        </div>
+        <div className="md:col-span-10">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight font-light">
+            <RevealLine><span className="text-white">What I make —</span></RevealLine>
+            <RevealLine delay={0.1}><span className="serif italic text-white/70">and how it ships.</span></RevealLine>
+          </h2>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-2 gap-px bg-white/[0.06] border border-white/[0.06] rounded-2xl overflow-hidden">
+        {SERVICES.map((s, i) => (
+          <ServiceCard key={s.n} s={s} i={i} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function ServiceCard({ s, i }) {
+  const cardRef = useRef(null);
+  const inView = useInView(cardRef, { once: true, margin: '-10% 0px' });
+  return (
+    <motion.div
+      ref={cardRef}
+      initial={{ opacity: 0, y: 30 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.9, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+      data-cursor="link"
+      className="group relative bg-black p-8 md:p-10 lg:p-14 hover:bg-white/[0.015] transition-colors duration-500"
+    >
+      <div className="flex items-start justify-between mb-8">
+        <div className="text-[10px] uppercase tracking-[0.3em] text-white/30">{s.n}</div>
+        <ArrowUpRight className="w-4 h-4 text-white/25 group-hover:text-white/80 group-hover:-translate-y-1 group-hover:translate-x-1 transition-all duration-500" />
+      </div>
+
+      <h3 className="text-3xl md:text-4xl lg:text-5xl leading-[1.05] tracking-tight font-light">
+        <span className="text-white">{s.title}</span>{' '}
+        <span className="serif italic text-white/55 block md:inline">{s.accent}</span>
+      </h3>
+
+      <p className="mt-6 text-white/55 text-base md:text-lg leading-relaxed max-w-md font-light">
+        {s.desc}
+      </p>
+
+      <div className="mt-8 flex flex-wrap gap-2">
+        {s.tags.map((t) => (
+          <span
+            key={t}
+            className="px-3 py-1 rounded-full border border-white/10 bg-white/[0.03] text-xs text-white/70"
+          >
+            {t}
+          </span>
+        ))}
+      </div>
+
+      <div className="pointer-events-none absolute inset-x-0 bottom-0 h-px bg-gradient-to-r from-transparent via-white/25 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+    </motion.div>
+  );
+}
+
+/* -----------------------------------------------------------
+   TESTIMONIALS
+----------------------------------------------------------- */
+const TESTIMONIALS = [
+  {
+    quote:
+      'Sumit turned a dense product story into a launch film that just clicked. The motion direction gave our AI Summit reveal an entirely different weight.',
+    name: 'Product Team',
+    role: 'Sarvam AI',
+    tag: 'India AI Summit — Launch',
+  },
+  {
+    quote:
+      'The motion GIFs shipped straight into our marketing site with almost zero back-and-forth. Fast, calm, and always on-brand — exactly what a lean team needs.',
+    name: 'Growth Lead',
+    role: 'Assurekit',
+    tag: 'SaaS · Website Motion',
+  },
+  {
+    quote:
+      'From storyboard to final delivery, the entire film felt like it was made by a studio double the size. Nerve’s launch page wouldn’t hit the same without it.',
+    name: 'Founding Team',
+    role: 'Nerve',
+    tag: 'Product Launch Film',
+  },
+];
+
+function Testimonials() {
+  return (
+    <section className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
+      <div className="grid md:grid-cols-12 gap-8 items-end mb-14 md:mb-20">
+        <div className="md:col-span-2">
+          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">05 — Voices</div>
+        </div>
+        <div className="md:col-span-10">
+          <h2 className="text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight font-light">
+            <RevealLine><span className="text-white">Words from the</span></RevealLine>
+            <RevealLine delay={0.1}><span className="serif italic text-white/70">teams I ship with.</span></RevealLine>
+          </h2>
+        </div>
+      </div>
+
+      <div className="grid md:grid-cols-3 gap-5 md:gap-6">
+        {TESTIMONIALS.map((t, i) => (
+          <TestimonialCard key={t.name + i} t={t} i={i} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TestimonialCard({ t, i }) {
+  const cardRef = useRef(null);
+  const inView = useInView(cardRef, { once: true, margin: '-10% 0px' });
+  return (
+    <motion.figure
+      ref={cardRef}
+      initial={{ opacity: 0, y: 40 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ duration: 0.9, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+      className="relative rounded-2xl border border-white/[0.08] bg-white/[0.015] p-8 md:p-10 flex flex-col justify-between min-h-[320px] hover:border-white/20 hover:bg-white/[0.03] transition-colors duration-500"
+    >
+      <div
+        aria-hidden
+        className="absolute top-6 left-8 serif italic text-6xl md:text-7xl leading-none text-white/10 select-none pointer-events-none"
+      >
+        “
+      </div>
+      <blockquote className="relative pt-8 text-lg md:text-xl text-white/85 leading-relaxed font-light">
+        {t.quote}
+      </blockquote>
+      <figcaption className="mt-8 pt-6 border-t border-white/[0.08]">
+        <div className="text-white text-sm">{t.name}</div>
+        <div className="text-white/50 text-xs mt-0.5">{t.role}</div>
+        <div className="mt-3 text-[9px] uppercase tracking-[0.25em] text-white/35">{t.tag}</div>
+      </figcaption>
+    </motion.figure>
+  );
+}
+
+/* -----------------------------------------------------------
    WORK CARD  (Drive thumbnail, opens case study)
 ----------------------------------------------------------- */
 function WorkCard({ project, onOpen }) {
@@ -531,7 +768,7 @@ function Work({ onOpen }) {
     <section id="work" className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">02 — Selected Work</div>
+          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">04 — Selected Work</div>
           <h2 className="text-4xl md:text-6xl font-light tracking-tight">
             <span className="text-white">Films, systems &amp;</span>{' '}
             <span className="serif italic text-white/70">moments.</span>
@@ -696,7 +933,7 @@ function CaseStudy({ project, onClose, onOpen }) {
 function Contact() {
   return (
     <section id="contact" className="relative max-w-7xl mx-auto px-6 py-32 md:py-48 text-center">
-      <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">03 — Start something</div>
+      <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">06 — Start something</div>
       <h2 className="text-5xl md:text-8xl font-light tracking-tight leading-[0.95]">
         <RevealLine><span className="text-white">Have a launch</span></RevealLine>
         <RevealLine delay={0.1}><span className="serif italic text-white/80">worth remembering?</span></RevealLine>
@@ -759,6 +996,7 @@ function Nav() {
         </a>
         <nav className="hidden md:flex items-center gap-10 text-sm text-white/60">
           <a href="#work" data-cursor="link" className="hover:text-white transition">Work</a>
+          <a href="#services" data-cursor="link" className="hover:text-white transition">Services</a>
           <a href="https://www.behance.net/Sumitlohar97" target="_blank" rel="noopener noreferrer" data-cursor="link" className="hover:text-white transition">Behance</a>
           <a href="#contact" data-cursor="link" className="hover:text-white transition">Contact</a>
         </nav>
@@ -879,7 +1117,10 @@ function App() {
         <Hero />
         <Marquee />
         <About />
+        <Clients />
+        <Services />
         <Work onOpen={setActive} />
+        <Testimonials />
         <Contact />
         <Footer />
 
