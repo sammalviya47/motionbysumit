@@ -57,108 +57,114 @@ const BEHANCE = [
   },
 ];
 
-const driveThumb = (id, w = 1600) => `https://lh3.googleusercontent.com/d/${id}=w${w}`;
-const drivePreview = (id) => `https://drive.google.com/file/d/${id}/preview`;
-const driveOpen = (id) => `https://drive.google.com/file/d/${id}/view`;
+/* Behance CDN media (real project banners from sumit's Behance) */
+const B = 'https://mir-s3-cdn-cf.behance.net/project_modules';
 
 const WORK = [
   {
     id: 'w1',
-    title: 'Sarvam AI — Product Launch',
+    title: 'Sarvam AI — Product Launch Videos',
     client: 'Sarvam AI',
-    category: 'AI / Product Film',
+    category: 'AI / Product Films',
     year: '2025',
-    driveId: '1fVSFbzlgZv_grMgypIClZ06SxKPtyWFN', // Base Intro.mp4
-    color: '#0a1a2a',
-    aspect: 'aspect-[16/9]',
-    challenge: 'Compress a multi-modal AI model launch into a brand-defining hero film that performs on the launch page, social and decks.',
-    outcome: 'Anchored the launch reel and the homepage hero. Played a measurable role in pre-launch sign-ups.',
-    tools: ['After Effects', 'Cinema 4D', 'Octane'],
-    role: 'Direction, Design, Animation',
+    banner: `${B}/1400/808231245007383.69a4563384063.gif`,
+    href: 'https://www.behance.net/gallery/245007383/Sarvam-AI-Product-Launch-Videos',
+    aspect: 'aspect-[16/10]',
+    color: '#1a1a2e',
+    challenge: 'A series of product launch videos for Sarvam AI, presented at the India AI Summit — Sarvam Akshar, Bulbul, Studio and Samvaad — each showcasing distinct AI capabilities.',
+    outcome: 'Delivered as launch reels used across the AI Summit stage, launch pages, social and product UI. Gradient shape animations shipped into the product/web system.',
+    tools: ['After Effects', 'Premiere Pro', 'Figma'],
+    role: 'Motion Direction, Animation, Edit',
   },
   {
     id: 'w2',
-    title: 'Agglayer — Motion Identity',
-    client: 'Polygon · Agglayer',
-    category: 'Web3 / System Film',
+    title: 'Stylumia — Orbix Launch',
+    client: 'Stylumia AI',
+    category: 'AI / Retail / GenAI',
     year: '2025',
-    driveId: '1LeGaCO3XpUUiel1tDbVDnRJcC-EYoWca', // Agglayer.mp4
-    color: '#1a0d24',
+    banner: `${B}/1400/0656e9245035043.69a51af491c09.gif`,
+    href: 'https://www.behance.net/gallery/245035043/Stylumia',
     aspect: 'aspect-[9/16]',
-    challenge: 'Make a complex aggregation layer feel like a living, breathing settlement network — not a flowchart.',
-    outcome: 'Used across keynote, web and social. Cited by ecosystem media as one of the clearest network explainers.',
-    tools: ['Cinema 4D', 'Redshift', 'After Effects'],
-    role: 'Motion Direction, Animation',
-  },
-  {
-    id: 'w3',
-    title: 'Beratrax — UI Motion',
-    client: 'Beratrax',
-    category: 'Web3 / UI Motion',
-    year: '2025',
-    driveId: '1NIVV3Ijht4FV3MQpO7q2gVl9euhfrVT0', // Beratrax Ui - Video 02_Final.mp4
-    color: '#171a0d',
-    aspect: 'aspect-[16/9]',
-    challenge: 'Translate the Beratrax product surface into a kinetic, on-brand walkthrough you actually want to finish.',
-    outcome: 'Shipped as the main product walkthrough and onboarding asset. Reused across decks and social cutdowns.',
-    tools: ['After Effects', 'Figma', 'Lottie'],
+    color: '#0a1a2a',
+    challenge: 'Motion graphics for the launch of Orbix — Stylumia’s GenAI retail intelligence product — plus a 24-hour turnaround showcase film for the Stylumia × Increff booth in the USA.',
+    outcome: 'Hi-fidelity GIF animations shipped across the Orbix website; the collaborative film delivered on time for the US booth activation.',
+    tools: ['After Effects', 'Premiere Pro'],
     role: 'Motion Design, Animation',
   },
   {
+    id: 'w3',
+    title: 'Nerve AI — Product Launch Video',
+    client: 'Nerve',
+    category: 'AI / Storytelling Film',
+    year: '2025',
+    banner: `${B}/1400_webp/1b5148244958177.69a2cc2336342.png`,
+    href: 'https://www.behance.net/gallery/244958177/Nerve-AI-Product-Launch-Video',
+    aspect: 'aspect-[16/9]',
+    color: '#0d0a24',
+    challenge: 'A 3:20 product storytelling film featuring Nerve’s co-founders — combining live-action, illustration and motion to move beyond the talking-head format.',
+    outcome: 'Anchored the Nerve launch page and social cutdowns. Set the tonal foundation for their brand’s ongoing motion identity.',
+    tools: ['After Effects', 'Premiere Pro', 'Illustrator'],
+    role: 'Direction, Animation, Edit',
+  },
+  {
     id: 'w4',
-    title: 'Beratrax — Logo Reveal',
-    client: 'Beratrax',
-    category: 'Web3 / Brand Sting',
-    year: '2024',
-    driveId: '1Fr132YBCqcWGdXaDl1RC2W9IKVjf2wnS', // Beratrax_Logo.mp4
-    color: '#0d141a',
-    aspect: 'aspect-[1/1]',
-    challenge: 'Build a 6-second logo sting that sets the tonal table for the entire brand motion system.',
-    outcome: 'Used as a category lead-in and on all client communications.',
-    tools: ['After Effects', 'Cinema 4D'],
-    role: 'Motion Identity',
+    title: 'Assurekit — Website Motion',
+    client: 'Assurekit',
+    category: 'SaaS / UI Motion / GIFs',
+    year: '2025',
+    banner: `${B}/max_1200_webp/e59aad244951459.69a29e342ab18.gif`,
+    href: 'https://www.behance.net/gallery/244951459/Assurekit-Website-Motion-Graphics-GIF-Animations',
+    aspect: 'aspect-[16/10]',
+    color: '#1f0a14',
+    challenge: 'Transform static website sections of an insurance-tech SaaS into dynamic touchpoints — a set of loopable, brand-aligned motion GIFs communicating features, workflows and platform benefits.',
+    outcome: 'Shipped 8–9 optimised motion GIFs across the Assurekit website that reduce information friction and lift feature comprehension.',
+    tools: ['After Effects', 'Figma'],
+    role: 'Motion System, Animation',
   },
   {
     id: 'w5',
-    title: 'Biconomy — Hero Film',
-    client: 'Biconomy',
-    category: 'Web3 / Hero Film',
-    year: '2025',
-    driveId: '1ued36GvXmvwvDrV9rYYlw1p3lMoAlyZE', // Biconomy_5.1_1.mp4
-    color: '#0a1f1c',
+    title: 'BASE — Motiongraphics Explainer',
+    client: 'Coinbase · BASE',
+    category: 'Web3 / Explainer',
+    year: '2024',
+    banner: `${B}/max_3840_webp/72b4ea242815819.6974a283172e7.jpg`,
+    href: 'https://www.behance.net/gallery/242815819/BASE-Motiongraphics-Explainer',
     aspect: 'aspect-[16/9]',
-    challenge: 'Build the visual language for Biconomy’s next chapter — abstract, infrastructure, alive.',
-    outcome: 'Anchored the main hero film and a series of social cutdowns.',
-    tools: ['Cinema 4D', 'Redshift', 'After Effects', 'Houdini'],
-    role: 'Direction, FX, Animation',
+    color: '#0b1f1c',
+    challenge: 'A concise motion graphics film for Fluid Studio explaining BASE, Coinbase’s L2 blockchain — communicating its purpose, benefits and impact on Web3 builders in one clean narrative.',
+    outcome: 'Delivered a polished explainer that clarifies what BASE is and why it matters — used across digital platforms by Fluid Studio.',
+    tools: ['After Effects', 'Premiere Pro', 'Illustrator'],
+    role: 'Motion Direction, Animation',
   },
   {
     id: 'w6',
-    title: 'Biconomy — Network',
-    client: 'Biconomy',
-    category: 'Web3 / Explainer',
-    year: '2025',
-    driveId: '1fZn4ZGandG5WfNQbhDwYZaWrpT0ijhb2', // Biconomy_Video_7.1.mp4
-    color: '#1a120a',
-    aspect: 'aspect-[9/16]',
-    challenge: 'Explain Biconomy’s account abstraction stack in 60 seconds without flattening it into a flowchart.',
-    outcome: 'Used as the technical hero film for partner pitches and developer outreach.',
-    tools: ['Cinema 4D', 'After Effects'],
-    role: 'Direction, Animation',
+    title: 'Beratrax — UI Motion',
+    client: 'Beratrax',
+    category: 'Web3 / UI Motion',
+    year: '2024',
+    banner: `${B}/1400_webp/39e6ee243268695.697dfdcf1e20d.jpg`,
+    href: 'https://www.behance.net/gallery/243268695/Beratrax',
+    aspect: 'aspect-[16/9]',
+    color: '#171a0d',
+    challenge: 'A UI motion piece for Beratrax that translates the crypto product’s surface into a kinetic, on-brand walkthrough.',
+    outcome: 'Shipped as the product’s main motion asset; reused across decks, socials and marketing surfaces.',
+    tools: ['After Effects', 'Premiere Pro', 'Illustrator', 'Photoshop'],
+    role: 'Motion Design, UI Animation',
   },
   {
     id: 'w7',
-    title: 'Bifrost — Network Motion',
-    client: 'Bifrost',
-    category: 'Web3 / Brand Film',
-    year: '2025',
-    driveId: '1M7h6EoJgnDhyGg1r1zo25wfBGct_anVq', // Bifrost_Video_3(Final)_6.mp4
-    color: '#1f0a14',
-    aspect: 'aspect-[16/9]',
-    challenge: 'Lift Bifrost’s liquid staking story above the noise with a film that feels like infrastructure poetry.',
-    outcome: 'Featured in the launch campaign and across category content.',
-    tools: ['Houdini', 'Cinema 4D', 'After Effects'],
-    role: 'Direction, FX, Animation',
+    title: 'App UI Overview — Motion',
+    client: 'Confidential',
+    category: 'SaaS / UI Motion',
+    year: '2024',
+    banner: `${B}/1400_webp/62ed5d243270555.697e07691571a.jpg`,
+    href: 'https://www.behance.net/gallery/243270555/App-UI-overview-Motion-graphics',
+    aspect: 'aspect-[9/16]',
+    color: '#0a1a24',
+    challenge: 'A short-form motion overview of a product’s app UI — designed to feel product-accurate, kinetic, and light enough for the marketing site.',
+    outcome: 'Delivered as a hero motion piece for the app’s launch. Shortened cutdowns adapted for social.',
+    tools: ['After Effects', 'Premiere Pro', 'Illustrator'],
+    role: 'Motion Design, UI Animation',
   },
 ];
 
@@ -487,7 +493,7 @@ function WorkCard({ project, onOpen }) {
     >
       <motion.div layoutId={`media-${project.id}`} className="absolute inset-0">
         <img
-          src={driveThumb(project.driveId, 1600)}
+          src={project.banner}
           alt={project.title}
           loading="lazy"
           draggable="false"
@@ -585,13 +591,11 @@ function CaseStudy({ project, onClose, onOpen }) {
           style={{ backgroundColor: project.color }}
         >
           <motion.div layoutId={`media-${project.id}`} className="absolute inset-0">
-            <iframe
-              src={drivePreview(project.driveId)}
-              allow="autoplay; encrypted-media; fullscreen"
-              allowFullScreen
-              className="w-full h-full"
-              style={{ border: 0 }}
-              title={project.title}
+            <img
+              src={project.banner}
+              alt={project.title}
+              draggable="false"
+              className="w-full h-full object-cover"
             />
           </motion.div>
         </motion.div>
@@ -638,13 +642,13 @@ function CaseStudy({ project, onClose, onOpen }) {
               <div className="flex flex-col gap-3">
                 <Magnetic strength={0.25}>
                   <a
-                    href={driveOpen(project.driveId)}
+                    href={project.href}
                     target="_blank"
                     rel="noopener noreferrer"
                     data-cursor="link"
                     className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm text-white/80 hover:text-white hover:border-white/30 transition"
                   >
-                    Open in Drive <ExternalLink className="w-3.5 h-3.5" />
+                    View on Behance <ExternalLink className="w-3.5 h-3.5" />
                   </a>
                 </Magnetic>
                 <Magnetic strength={0.3}>
@@ -673,7 +677,7 @@ function CaseStudy({ project, onClose, onOpen }) {
                 className="text-left group"
               >
                 <div className="aspect-video rounded-2xl overflow-hidden border border-white/10">
-                  <img src={driveThumb(p.driveId, 800)} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                  <img src={p.banner} alt={p.title} className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
                 </div>
                 <div className="mt-3 text-sm text-white">{p.title}</div>
                 <div className="text-xs text-white/40">{p.client}</div>
