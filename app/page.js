@@ -169,47 +169,225 @@ const WORK = [
 ];
 
 /* -----------------------------------------------------------
-   CUSTOM CURSOR
+   CURSOR TRAIL  —  premium purple comet-tail on <canvas>
+----------------------------------------------------------- */
+function CursorTrail() {
+  const canvasRef = useRef(null);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    // Skip on touch / no-hover devices
+    const canHover =
+      typeof window !== 'undefined' &&
+      window.matchMedia &&
+      window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+    if (!canHover) return;
+
+    const ctx = canvas.getContext('2d');
+    let dpr = Math.min(window.devicePixelRatio || 1, 2);
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      canvas.width = Math.floor(window.innerWidth * dpr);
+      canvas.height = Math.floor(window.innerHeight * dpr);
+      canvas.style.width = window.innerWidth + 'px';
+      canvas.style.height = window.innerHeight + 'px';
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+    resize();
+    window.addEventListener('resize', resize);
+
+    const points = []; // ring of {x,y,t}
+    const MAX_AGE = 520; // ms trail lifetime
+    let speedEma = 0;
+    let last = { x: -9999, y: -9999, t: performance.now() };
+
+    const onMove = (e) => {
+      const now = performance.now();
+      const dt = Math.max(1, now - last.t);
+      const dx = e.clientX - last.x;
+      const dy = e.clientY - last.y;
+      const dist = Math.hypot(dx, dy);
+      const v = dist / dt; // px per ms
+      speedEma = speedEma * 0.75 + v * 0.25;
+
+      points.push({ x: e.clientX, y: e.clientY, t: now });
+      // Cap buffer to avoid unbounded growth on very fast motion
+      if (points.length > 90) points.shift();
+
+      last = { x: e.clientX, y: e.clientY, t: now };
+    };
+    window.addEventListener('mousemove', onMove, { passive: true });
+
+    // Multi-pass "afterburn" — outer soft glow → mid glow → hot core
+    // No filter blur (expensive) — we synthesise glow with wide low-alpha strokes.
+    const passes = [
+      { widthMul: 5.5, alphaMul: 0.06, hot: false }, // outer plasma
+      { widthMul: 3.0, alphaMul: 0.16, hot: false }, // mid glow
+      { widthMul: 1.6, alphaMul: 0.42, hot: false }, // near core (purple)
+      { widthMul: 0.7, alphaMul: 0.95, hot: true },  // hot white-purple core
+    ];
+
+    let raf;
+    const draw = () => {
+      const now = performance.now();
+
+      // prune old points
+      while (points.length && now - points[0].t > MAX_AGE) points.shift();
+
+      ctx.clearRect(0, 0, canvas.width / dpr, canvas.height / dpr);
+
+      if (points.length >= 2) {
+        // 0..1 speed multiplier (v ~ 0.5-4 px/ms typical)
+        const sMul = Math.min(1, speedEma / 2.2);
+        const baseWidth = 2.2 + 6.0 * sMul; // fast = thicker
+        const brightness = 0.55 + 0.45 * sMul; // fast = brighter
+
+        ctx.globalCompositeOperation = 'lighter';
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        for (const pass of passes) {
+          for (let i = 1; i < points.length; i++) {
+            const p0 = points[i - 1];
+            const p1 = points[i];
+            const age = (now - (p0.t + p1.t) / 2) / MAX_AGE; // 0=newest 1=oldest
+            const life = 1 - age;
+            if (life <= 0) continue;
+
+            // width tapers toward tail, alpha fades quadratic
+            const w = baseWidth * pass.widthMul * (0.35 + 0.65 * life);
+            const alpha = life * life * pass.alphaMul * brightness;
+            if (alpha < 0.003) continue;
+
+            // segment gradient — deeper purple at tail, brighter at head
+            const grad = ctx.createLinearGradient(p0.x, p0.y, p1.x, p1.y);
+            if (pass.hot) {
+              // Hot core: white → violet
+              grad.addColorStop(0, `rgba(180, 140, 255, ${alpha * 0.55})`);
+              grad.addColorStop(1, `rgba(240, 230, 255, ${alpha})`);
+            } else {
+              grad.addColorStop(0, `rgba(82, 28, 184, ${alpha * 0.55})`);
+              grad.addColorStop(1, `rgba(119, 57, 227, ${alpha})`);
+            }
+            ctx.strokeStyle = grad;
+            ctx.lineWidth = w;
+
+            ctx.beginPath();
+            ctx.moveTo(p0.x, p0.y);
+            // quadratic through mid-point to next → smooth ribbon (no chain of circles)
+            if (i < points.length - 1) {
+              const p2 = points[i + 1];
+              const mx = (p1.x + p2.x) / 2;
+              const my = (p1.y + p2.y) / 2;
+              ctx.quadraticCurveTo(p1.x, p1.y, mx, my);
+            } else {
+              ctx.lineTo(p1.x, p1.y);
+            }
+            ctx.stroke();
+          }
+        }
+
+        ctx.globalCompositeOperation = 'source-over';
+      }
+
+      raf = requestAnimationFrame(draw);
+    };
+    raf = requestAnimationFrame(draw);
+
+    return () => {
+      window.removeEventListener('mousemove', onMove);
+      window.removeEventListener('resize', resize);
+      cancelAnimationFrame(raf);
+    };
+  }, []);
+
+  return (
+    <canvas
+      ref={canvasRef}
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-[190] hidden md:block"
+      style={{ mixBlendMode: 'screen' }}
+    />
+  );
+}
+
+/* -----------------------------------------------------------
+   CUSTOM CURSOR — small white core with purple aurora glow
 ----------------------------------------------------------- */
 function CustomCursor() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
-  const sx = useSpring(x, { stiffness: 500, damping: 40, mass: 0.5 });
-  const sy = useSpring(y, { stiffness: 500, damping: 40, mass: 0.5 });
-  const [variant, setVariant] = useState('default');
+  const sx = useSpring(x, { stiffness: 900, damping: 45, mass: 0.25 });
+  const sy = useSpring(y, { stiffness: 900, damping: 45, mass: 0.25 });
+  const [hover, setHover] = useState(false);
+  const [burst, setBurst] = useState(0);
 
   useEffect(() => {
-    const move = (e) => { x.set(e.clientX); y.set(e.clientY); };
+    const move = (e) => {
+      x.set(e.clientX);
+      y.set(e.clientY);
+    };
     const over = (e) => {
       const t = e.target;
-      if (t.closest && t.closest('[data-cursor="view"]')) setVariant('view');
-      else if (t.closest && t.closest('[data-cursor="play"]')) setVariant('play');
-      else if (t.closest && t.closest('[data-cursor="link"]')) setVariant('link');
-      else setVariant('default');
+      const isInteractive =
+        t && t.closest && !!t.closest('a, button, [data-cursor], [role="button"], input, textarea, select, label');
+      setHover(isInteractive);
     };
+    const click = () => setBurst((b) => b + 1);
     window.addEventListener('mousemove', move);
     window.addEventListener('mouseover', over);
+    window.addEventListener('mousedown', click);
     return () => {
       window.removeEventListener('mousemove', move);
       window.removeEventListener('mouseover', over);
+      window.removeEventListener('mousedown', click);
     };
   }, [x, y]);
 
-  const size = variant === 'view' || variant === 'play' ? 96 : variant === 'link' ? 44 : 14;
-  const label = variant === 'view' ? 'View' : variant === 'play' ? 'Play' : '';
-
   return (
     <motion.div
-      className="pointer-events-none fixed top-0 left-0 z-[200] hidden md:flex items-center justify-center mix-blend-difference"
+      className="pointer-events-none fixed top-0 left-0 z-[210] hidden md:block"
       style={{ x: sx, y: sy, translateX: '-50%', translateY: '-50%' }}
+      aria-hidden
     >
+      {/* Core dot */}
       <motion.div
-        animate={{ width: size, height: size }}
-        transition={{ type: 'spring', stiffness: 350, damping: 28 }}
-        className="rounded-full bg-white flex items-center justify-center text-black text-[10px] font-medium tracking-wider uppercase"
-      >
-        {label}
-      </motion.div>
+        animate={{
+          width: hover ? 22 : 8,
+          height: hover ? 22 : 8,
+        }}
+        transition={{ type: 'spring', stiffness: 420, damping: 26 }}
+        className="rounded-full"
+        style={{
+          background: hover
+            ? 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(200,170,255,0.9) 55%, rgba(119,57,227,0.6) 100%)'
+            : 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(230,220,255,0.9) 60%, rgba(119,57,227,0.4) 100%)',
+          boxShadow: hover
+            ? '0 0 22px 6px rgba(119,57,227,0.85), 0 0 60px 14px rgba(82,28,184,0.55), 0 0 120px 26px rgba(82,28,184,0.25)'
+            : '0 0 14px 3px rgba(119,57,227,0.75), 0 0 34px 8px rgba(82,28,184,0.35), 0 0 70px 16px rgba(82,28,184,0.15)',
+        }}
+      />
+
+      {/* Click ripple */}
+      <AnimatePresence>
+        <motion.span
+          key={burst}
+          initial={{ opacity: 0.55, scale: 0.4 }}
+          animate={{ opacity: 0, scale: 3.2 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }}
+          className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 rounded-full pointer-events-none"
+          style={{
+            width: 40,
+            height: 40,
+            background:
+              'radial-gradient(circle, rgba(180,140,255,0.55) 0%, rgba(119,57,227,0.35) 40%, rgba(82,28,184,0) 70%)',
+          }}
+        />
+      </AnimatePresence>
     </motion.div>
   );
 }
@@ -1111,6 +1289,7 @@ function App() {
     <LayoutGroup>
       <main className="relative">
         <div className="grain" />
+        <CursorTrail />
         <CustomCursor />
         <PageEntry />
         <Nav />
