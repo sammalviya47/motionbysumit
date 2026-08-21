@@ -12,7 +12,7 @@ import {
   LayoutGroup,
 } from 'framer-motion';
 import Lenis from 'lenis';
-import { ArrowUpRight, ArrowRight, X, Plus, ExternalLink } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, X, Plus, ExternalLink, Mail } from 'lucide-react';
 
 /* -----------------------------------------------------------
    DATA  —  Behance covers on home, Drive videos in work
@@ -482,9 +482,7 @@ function CustomCursor() {
         transition={{ type: 'spring', stiffness: 420, damping: 26 }}
         className="rounded-full"
         style={{
-          background: hover
-            ? 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(200,170,255,0.9) 55%, rgba(119,57,227,0.6) 100%)'
-            : 'radial-gradient(circle, rgba(255,255,255,0.98) 0%, rgba(230,220,255,0.9) 60%, rgba(119,57,227,0.4) 100%)',
+          background: '#FFFFFF',
           boxShadow: hover
             ? '0 0 22px 6px rgba(119,57,227,0.85), 0 0 60px 14px rgba(82,28,184,0.55), 0 0 120px 26px rgba(82,28,184,0.25)'
             : '0 0 14px 3px rgba(119,57,227,0.75), 0 0 34px 8px rgba(82,28,184,0.35), 0 0 70px 16px rgba(82,28,184,0.15)',
@@ -776,62 +774,6 @@ function About() {
 }
 
 /* -----------------------------------------------------------
-   CLIENTS  —  typographic client strip
------------------------------------------------------------ */
-const CLIENTS = [
-  { name: 'Sarvam AI', tag: 'AI' },
-  { name: 'Stylumia', tag: 'Retail AI' },
-  { name: 'Nerve', tag: 'AI' },
-  { name: 'Coinbase · BASE', tag: 'Web3' },
-  { name: 'Assurekit', tag: 'SaaS' },
-  { name: 'Beratrax', tag: 'Web3' },
-  { name: 'Fluid Studio', tag: 'Studio' },
-  { name: 'HyperSign', tag: 'Web3' },
-];
-
-function Clients() {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: '-15% 0px' });
-  return (
-    <section ref={ref} className="relative border-y border-white/[0.06] bg-black/40">
-      <div className="max-w-7xl mx-auto px-6 py-20 md:py-24">
-        <div className="grid md:grid-cols-12 gap-8 items-end mb-10 md:mb-14">
-          <div className="md:col-span-2">
-            <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">02 — Trust</div>
-          </div>
-          <div className="md:col-span-10">
-            <h2 className="text-2xl md:text-4xl font-light tracking-tight text-white/85 leading-tight">
-              <RevealLine><span>Trusted by teams shipping</span></RevealLine>
-              <RevealLine delay={0.08}><span className="serif italic text-white/60">AI, SaaS &amp; Web3 products.</span></RevealLine>
-            </h2>
-          </div>
-        </div>
-
-        <div className="grid grid-cols-2 md:grid-cols-4 border-t border-white/[0.06]">
-          {CLIENTS.map((c, i) => (
-            <motion.div
-              key={c.name}
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.9, delay: 0.05 + i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-              className={`group relative px-4 md:px-6 py-8 md:py-10 border-b border-r border-white/[0.06] ${
-                i % 4 === 3 ? 'md:border-r-0' : ''
-              } ${i % 2 === 1 ? 'border-r-0 md:border-r' : ''} hover:bg-white/[0.02] transition-colors duration-500`}
-            >
-              <div className="text-[9px] uppercase tracking-[0.3em] text-white/30 mb-2">{c.tag}</div>
-              <div className="text-lg md:text-2xl font-light tracking-tight text-white/85 group-hover:text-white transition">
-                {c.name}
-              </div>
-              <div className="absolute inset-x-6 bottom-0 h-px bg-gradient-to-r from-white/0 via-white/20 to-white/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-            </motion.div>
-          ))}
-        </div>
-      </div>
-    </section>
-  );
-}
-
-/* -----------------------------------------------------------
    SERVICES
 ----------------------------------------------------------- */
 const SERVICES = [
@@ -871,7 +813,7 @@ function Services() {
     <section id="services" ref={ref} className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
       <div className="grid md:grid-cols-12 gap-8 items-end mb-14 md:mb-20">
         <div className="md:col-span-2">
-          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">03 — Services</div>
+          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40">02 — Services</div>
         </div>
         <div className="md:col-span-10">
           <h2 className="text-3xl md:text-5xl lg:text-6xl leading-[1.05] tracking-tight font-light">
@@ -941,7 +883,7 @@ function WorkCard({ project, onOpen }) {
       layoutId={`card-${project.id}`}
       onClick={() => onOpen(project)}
       data-cursor="play"
-      className={`relative overflow-hidden rounded-2xl border border-white/[0.06] mb-5 md:mb-6 break-inside-avoid ${project.aspect} group`}
+      className="relative overflow-hidden rounded-2xl border border-white/[0.06] aspect-video group"
       style={{ backgroundColor: project.color }}
       whileHover={{ y: -4 }}
       transition={{ type: 'spring', stiffness: 200, damping: 22 }}
@@ -956,23 +898,19 @@ function WorkCard({ project, onOpen }) {
         />
       </motion.div>
 
-      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/10 to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/5 to-transparent pointer-events-none opacity-90 group-hover:opacity-100 transition-opacity duration-500" />
 
-      <div className="absolute inset-0 flex flex-col justify-end p-5 md:p-6 pointer-events-none">
-        <div className="flex items-center justify-between text-[10px] uppercase tracking-[0.25em] text-white/60 mb-3">
-          <span>{project.category}</span>
-          <span>{project.year}</span>
-        </div>
-        <motion.h3 layoutId={`title-${project.id}`} className="text-xl md:text-2xl font-light tracking-tight text-white leading-tight">
+      <div className="absolute inset-x-0 bottom-0 p-4 md:p-5 pointer-events-none">
+        <motion.h3
+          layoutId={`title-${project.id}`}
+          className="text-[13px] md:text-sm font-light tracking-tight text-white/95 leading-snug"
+        >
           {project.title}
         </motion.h3>
-        <motion.div layoutId={`client-${project.id}`} className="text-sm text-white/50 mt-1">
-          {project.client}
-        </motion.div>
       </div>
 
-      <div className="absolute top-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center text-white pointer-events-none">
-        <Plus className="w-4 h-4" />
+      <div className="absolute top-3 right-3 w-8 h-8 rounded-full bg-white/10 backdrop-blur border border-white/15 flex items-center justify-center text-white pointer-events-none opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <Plus className="w-3.5 h-3.5" />
       </div>
     </motion.div>
   );
@@ -986,7 +924,7 @@ function Work({ onOpen }) {
     <section id="work" className="relative max-w-7xl mx-auto px-6 py-24 md:py-32">
       <div className="flex flex-col md:flex-row items-start md:items-end justify-between mb-12 md:mb-16 gap-6">
         <div>
-          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">04 — Selected Work</div>
+          <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-4">03 — Selected Work</div>
           <h2 className="text-4xl md:text-6xl font-light tracking-tight">
             <span className="text-white">Films, systems &amp;</span>{' '}
             <span className="serif italic text-white/70">moments.</span>
@@ -997,7 +935,7 @@ function Work({ onOpen }) {
         </div>
       </div>
 
-      <div className="columns-1 sm:columns-2 lg:columns-3 gap-5 md:gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6">
         {WORK.map((p) => (
           <WorkCard key={p.id} project={p} onOpen={onOpen} />
         ))}
@@ -1202,16 +1140,16 @@ function CaseStudy({ project, onClose, onOpen }) {
 function Contact() {
   return (
     <section id="contact" className="relative max-w-7xl mx-auto px-6 py-32 md:py-48 text-center">
-      <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">05 — Start something</div>
-      <h2 className="text-5xl md:text-8xl font-light tracking-tight leading-[0.95]">
+      <div className="text-[10px] uppercase tracking-[0.3em] text-white/40 mb-6">04 — Start something</div>
+      <h2 className="text-5xl md:text-8xl font-light tracking-tight leading-[1.05] pb-4 md:pb-6">
         <RevealLine><span className="text-white">Have a launch</span></RevealLine>
-        <RevealLine delay={0.1}><span className="serif italic text-white/80">worth remembering?</span></RevealLine>
+        <RevealLine delay={0.1}><span className="serif italic text-white/80 inline-block pb-2 md:pb-3">worth remembering?</span></RevealLine>
       </h2>
 
       <div className="mt-12 flex flex-col md:flex-row gap-4 items-center justify-center">
         <Magnetic strength={0.35}>
-          <a href="mailto:hello@shutterbutter.studio" data-cursor="link" className="group inline-flex items-center gap-3 rounded-full bg-white text-black pl-6 pr-2 py-2 text-sm font-medium hover:bg-white/90 transition">
-            hello@shutterbutter.studio
+          <a href="mailto:sammalviya47@gmail.com?subject=Project%20Inquiry" data-cursor="link" className="group inline-flex items-center gap-3 rounded-full bg-white text-black pl-6 pr-2 py-2 text-sm font-medium hover:bg-white/90 transition">
+            sammalviya47@gmail.com
             <span className="flex items-center justify-center w-10 h-10 rounded-full bg-black text-white group-hover:rotate-45 transition-transform duration-500">
               <ArrowUpRight className="w-4 h-4" />
             </span>
@@ -1220,7 +1158,7 @@ function Contact() {
         <span className="text-white/30 text-sm">or</span>
         <Magnetic strength={0.25}>
           <a href="https://www.behance.net/Sumitlohar97" target="_blank" rel="noopener noreferrer" data-cursor="link" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-6 py-3 text-sm text-white/80 hover:text-white hover:border-white/30 transition">
-            Full Behance <ArrowUpRight className="w-4 h-4" />
+            Behance <ArrowUpRight className="w-4 h-4" />
           </a>
         </Magnetic>
       </div>
@@ -1228,7 +1166,7 @@ function Contact() {
       <div className="mt-24 grid md:grid-cols-3 gap-8 max-w-3xl mx-auto">
         {[
           { k: '7yr', v: 'Practice' },
-          { k: '40+', v: 'Films shipped' },
+          { k: '40+', v: 'Projects shipped' },
           { k: 'IN', v: 'Bangalore, India' },
         ].map((s) => (
           <div key={s.v} className="border-t border-white/10 pt-6 text-left">
@@ -1238,6 +1176,22 @@ function Contact() {
         ))}
       </div>
     </section>
+  );
+}
+
+/* -----------------------------------------------------------
+   BEHANCE ICON  (small inline SVG for nav)
+----------------------------------------------------------- */
+function BehanceIcon({ className = 'w-3.5 h-3.5' }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      aria-hidden="true"
+      className={className}
+    >
+      <path d="M6.94 4.5c.7 0 1.34.06 1.92.19.58.13 1.07.34 1.48.61.41.28.73.65.96 1.12.22.47.34 1.05.34 1.73 0 .74-.17 1.36-.51 1.86-.34.5-.84.91-1.5 1.22.9.26 1.58.72 2.03 1.37.45.66.66 1.45.66 2.36 0 .75-.13 1.39-.41 1.93-.28.55-.68 1-1.17 1.34-.49.34-1.05.6-1.68.75-.63.16-1.29.24-1.98.24H0V4.5h6.94zm-.35 5.1c.57 0 1.05-.14 1.4-.4.36-.27.53-.7.53-1.3 0-.34-.06-.6-.19-.82a1.3 1.3 0 0 0-.5-.51 2.03 2.03 0 0 0-.7-.26 4.1 4.1 0 0 0-.8-.07H3.24v3.36h3.35zm.2 5.28c.31 0 .61-.03.89-.09.28-.06.53-.16.74-.29.21-.14.38-.32.5-.55.13-.22.2-.51.2-.86 0-.68-.2-1.16-.58-1.45-.38-.29-.87-.44-1.5-.44H3.24v3.68h3.55zM17.9 15c.42.4 1 .6 1.72.6.51 0 .94-.14 1.3-.42.36-.28.58-.58.66-.9h2.48c-.4 1.24-1 2.13-1.84 2.66-.83.53-1.83.79-3 .79-.83 0-1.57-.13-2.23-.4a4.6 4.6 0 0 1-1.68-1.12 5 5 0 0 1-1.06-1.79 6.6 6.6 0 0 1-.36-2.31c0-.82.12-1.58.37-2.28.25-.7.6-1.31 1.06-1.81.46-.51 1.02-.9 1.66-1.19.64-.29 1.35-.43 2.14-.43.9 0 1.68.17 2.35.53.66.35 1.2.82 1.62 1.4.42.6.72 1.26.9 2.02.19.75.25 1.55.19 2.38h-7.1c0 .8.29 1.58.7 1.98zm3.06-5.42c-.33-.36-.83-.55-1.5-.55-.44 0-.81.08-1.1.23-.29.15-.53.34-.7.55-.17.22-.29.46-.36.72a3.1 3.1 0 0 0-.12.72h4.42c-.06-.65-.27-1.16-.63-1.52zM14 5.32h6v1.5h-6v-1.5z" />
+    </svg>
   );
 }
 
@@ -1266,14 +1220,32 @@ function Nav() {
         <nav className="hidden md:flex items-center gap-10 text-sm text-white/60">
           <a href="#work" data-cursor="link" className="hover:text-white transition">Work</a>
           <a href="#services" data-cursor="link" className="hover:text-white transition">Services</a>
-          <a href="https://www.behance.net/Sumitlohar97" target="_blank" rel="noopener noreferrer" data-cursor="link" className="hover:text-white transition">Behance</a>
           <a href="#contact" data-cursor="link" className="hover:text-white transition">Contact</a>
         </nav>
-        <Magnetic strength={0.3}>
-          <a href="#contact" data-cursor="link" className="inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-white/80 hover:text-white hover:border-white/30 transition">
-            Hire <ArrowUpRight className="w-3.5 h-3.5" />
-          </a>
-        </Magnetic>
+        <div className="flex items-center gap-3">
+          <Magnetic strength={0.25}>
+            <a
+              href="https://www.behance.net/Sumitlohar97"
+              target="_blank"
+              rel="noopener noreferrer"
+              data-cursor="link"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-white/80 hover:text-white hover:border-white/30 transition"
+            >
+              <BehanceIcon className="w-3.5 h-3.5" />
+              Behance
+            </a>
+          </Magnetic>
+          <Magnetic strength={0.3}>
+            <a
+              href="mailto:sammalviya47@gmail.com?subject=Project%20Inquiry"
+              data-cursor="link"
+              className="inline-flex items-center gap-1.5 rounded-full border border-white/15 px-4 py-1.5 text-[10px] uppercase tracking-[0.2em] text-white/80 hover:text-white hover:border-white/30 transition"
+            >
+              <Mail className="w-3.5 h-3.5" />
+              Hire
+            </a>
+          </Magnetic>
+        </div>
       </div>
     </motion.header>
   );
@@ -1286,7 +1258,7 @@ function Footer() {
   return (
     <footer className="relative border-t border-white/[0.06]">
       <div className="max-w-7xl mx-auto px-6 py-12 flex flex-col md:flex-row items-center justify-between gap-4 text-[10px] uppercase tracking-[0.25em] text-white/40">
-        <div>© 2025 — Sumit Lohar · Shutter Butter Studio</div>
+        <div>© 2025 — Sumit Lohar</div>
         <div>Made in 60fps · Direction · Motion · Sound</div>
       </div>
     </footer>
@@ -1387,7 +1359,6 @@ function App() {
         <Hero />
         <Marquee />
         <About />
-        <Clients />
         <Services />
         <Work onOpen={setActive} />
         <Contact />
