@@ -1255,17 +1255,6 @@ function CaseStudy({ project, onClose, onOpen }) {
                 <div className="text-white/90">{project.year}</div>
               </div>
               <div className="flex flex-col gap-3">
-                <Magnetic strength={0.25}>
-                  <a
-                    href={project.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    data-cursor="link"
-                    className="inline-flex items-center gap-2 rounded-full border border-white/15 px-5 py-3 text-sm text-white/80 hover:text-white hover:border-white/30 transition"
-                  >
-                    View on Behance <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
-                </Magnetic>
                 <Magnetic strength={0.3}>
                   <a
                     href="#contact"
