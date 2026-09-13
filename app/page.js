@@ -60,18 +60,20 @@ const BEHANCE = [
 /* Behance CDN media (real project banners from sumit's Behance) */
 const B = 'https://mir-s3-cdn-cf.behance.net/project_modules';
 const COVER = 'https://mir-s3-cdn-cf.behance.net/projects/404';
+const YT_THUMB = (id) => `https://img.youtube.com/vi/${id}/maxresdefault.jpg`;
 
 const WORK = [
   {
     id: 'w1',
     pid: '245007383',
-    title: 'Sarvam AI — Product Launch Videos',
+    yt: '8YhT7TTeV8g',
+    title: 'Sarvam AI — Bulbul',
     client: 'Sarvam AI',
     category: 'AI / Product Films',
     year: '2025',
     banner: `${COVER}/d24355245007383.Y3JvcCwxMDgwLDg0NCwwLDExNw.png`,
     href: 'https://www.behance.net/gallery/245007383/Sarvam-AI-Product-Launch-Videos',
-    aspect: 'aspect-[16/10]',
+    aspect: 'aspect-video',
     color: '#1a1a2e',
     challenge: 'A series of product launch videos for Sarvam AI, presented at the India AI Summit — Sarvam Akshar, Bulbul, Studio and Samvaad — each showcasing distinct AI capabilities.',
     outcome: 'Delivered as launch reels used across the AI Summit stage, launch pages, social and product UI. Gradient shape animations shipped into the product/web system.',
@@ -81,13 +83,14 @@ const WORK = [
   {
     id: 'w2',
     pid: '245035043',
+    yt: 'JlcXL_kodMg',
     title: 'Stylumia — Orbix Launch',
     client: 'Stylumia AI',
     category: 'AI / Retail / GenAI',
     year: '2025',
     banner: `${COVER}/382dc2245035043.Y3JvcCw4MDgsNjMyLDAsMA.jpg`,
     href: 'https://www.behance.net/gallery/245035043/Stylumia',
-    aspect: 'aspect-[9/16]',
+    aspect: 'aspect-video',
     color: '#0a1a2a',
     challenge: 'Motion graphics for the launch of Orbix — Stylumia’s GenAI retail intelligence product — plus a 24-hour turnaround showcase film for the Stylumia × Increff booth in the USA.',
     outcome: 'Hi-fidelity GIF animations shipped across the Orbix website; the collaborative film delivered on time for the US booth activation.',
@@ -97,13 +100,14 @@ const WORK = [
   {
     id: 'w3',
     pid: '244958177',
+    yt: 'fws5vy2tKqM',
     title: 'Nerve AI — Product Launch Video',
     client: 'Nerve',
     category: 'AI / Storytelling Film',
     year: '2025',
     banner: `${COVER}/e6819c244958177.Y3JvcCw5OTksNzgyLDQ2MCww.png`,
     href: 'https://www.behance.net/gallery/244958177/Nerve-AI-Product-Launch-Video',
-    aspect: 'aspect-[16/9]',
+    aspect: 'aspect-video',
     color: '#0d0a24',
     challenge: 'A 3:20 product storytelling film featuring Nerve’s co-founders — combining live-action, illustration and motion to move beyond the talking-head format.',
     outcome: 'Anchored the Nerve launch page and social cutdowns. Set the tonal foundation for their brand’s ongoing motion identity.',
@@ -113,13 +117,14 @@ const WORK = [
   {
     id: 'w4',
     pid: '244951459',
+    yt: 'LoephbJNciI',
     title: 'Assurekit — Website Motion',
     client: 'Assurekit',
     category: 'SaaS / UI Motion / GIFs',
     year: '2025',
     banner: `${COVER}/f25f29244951459.Y3JvcCwxMzUxLDEwNTcsMCwxMDA.png`,
     href: 'https://www.behance.net/gallery/244951459/Assurekit-Website-Motion-Graphics-GIF-Animations',
-    aspect: 'aspect-[16/10]',
+    aspect: 'aspect-video',
     color: '#1f0a14',
     challenge: 'Transform static website sections of an insurance-tech SaaS into dynamic touchpoints — a set of loopable, brand-aligned motion GIFs communicating features, workflows and platform benefits.',
     outcome: 'Shipped 8–9 optimised motion GIFs across the Assurekit website that reduce information friction and lift feature comprehension.',
@@ -129,13 +134,14 @@ const WORK = [
   {
     id: 'w5',
     pid: '242815819',
+    yt: 'DY9BeoEbiOQ',
     title: 'BASE — Motiongraphics Explainer',
     client: 'Coinbase · BASE',
     category: 'Web3 / Explainer',
     year: '2024',
     banner: `${B}/max_3840_webp/72b4ea242815819.6974a283172e7.jpg`,
     href: 'https://www.behance.net/gallery/242815819/BASE-Motiongraphics-Explainer',
-    aspect: 'aspect-[16/9]',
+    aspect: 'aspect-video',
     color: '#0b1f1c',
     challenge: 'A concise motion graphics film for Fluid Studio explaining BASE, Coinbase’s L2 blockchain — communicating its purpose, benefits and impact on Web3 builders in one clean narrative.',
     outcome: 'Delivered a polished explainer that clarifies what BASE is and why it matters — used across digital platforms by Fluid Studio.',
@@ -145,13 +151,14 @@ const WORK = [
   {
     id: 'w6',
     pid: '243268695',
+    yt: 'CkzavSmDx4o',
     title: 'Beratrax — UI Motion',
     client: 'Beratrax',
     category: 'Web3 / UI Motion',
     year: '2024',
     banner: `${B}/1400_webp/39e6ee243268695.697dfdcf1e20d.jpg`,
     href: 'https://www.behance.net/gallery/243268695/Beratrax',
-    aspect: 'aspect-[16/9]',
+    aspect: 'aspect-video',
     color: '#171a0d',
     challenge: 'A UI motion piece for Beratrax that translates the crypto product’s surface into a kinetic, on-brand walkthrough.',
     outcome: 'Shipped as the product’s main motion asset; reused across decks, socials and marketing surfaces.',
@@ -161,13 +168,14 @@ const WORK = [
   {
     id: 'w7',
     pid: '243270555',
+    yt: 'eZvknV72oZw',
     title: 'App UI Overview — Motion',
     client: 'Confidential',
     category: 'SaaS / UI Motion',
     year: '2024',
     banner: `${B}/1400_webp/62ed5d243270555.697e07691571a.jpg`,
     href: 'https://www.behance.net/gallery/243270555/App-UI-overview-Motion-graphics',
-    aspect: 'aspect-[9/16]',
+    aspect: 'aspect-video',
     color: '#0a1a24',
     challenge: 'A short-form motion overview of a product’s app UI — designed to feel product-accurate, kinetic, and light enough for the marketing site.',
     outcome: 'Delivered as a hero motion piece for the app’s launch. Shortened cutdowns adapted for social.',
@@ -177,13 +185,14 @@ const WORK = [
   {
     id: 'w8',
     pid: '252230717',
+    yt: 'GpOhuZlv5EU',
     title: 'KOSH Money — Global Finance Launch',
     client: 'KOSH · Spacekayak',
     category: 'Fintech / Product Film',
     year: '2026',
     banner: `${COVER}/b40888252230717.Y3JvcCw4MDgsNjMyLDAsMA.jpg`,
     href: 'https://www.behance.net/gallery/252230717/KOSH-Money-Global-Finance-Product-Launch-Film',
-    aspect: 'aspect-[16/9]',
+    aspect: 'aspect-video',
     color: '#0a1614',
     challenge: 'A launch film for KOSH — a global finance platform for freelancers, creators and distributed teams — blending live-action, cinematic storytelling and premium glassmorphism UI to introduce the product and its stablecoin-powered infrastructure.',
     outcome: 'Delivered as the launch film — including 2nd DOP contribution on set and a 1,200-layer After Effects build of the animated glass UI sequences that visualise the platform’s core features.',
@@ -193,13 +202,14 @@ const WORK = [
   {
     id: 'w9',
     pid: '253025327',
+    yt: '73E89XSTEsg',
     title: 'Polygon Gigagas — Roadmap Motion',
     client: 'Polygon · Spacekayak',
     category: 'Web3 / Motion Presentation',
     year: '2026',
     banner: `${COVER}/93cd40253025327.Y3JvcCw5NjIsNzUyLDQ3OCwxNjQ.png`,
     href: 'https://www.behance.net/gallery/253025327/Polygon-Gigagas-Roadmap-Motion-Presentation',
-    aspect: 'aspect-[16/10]',
+    aspect: 'aspect-video',
     color: '#140a28',
     challenge: 'Transform Polygon’s dense Gigagas roadmap content into a visually engaging motion presentation — communicating the L2 vision with modern typography, smooth transitions and a clean, premium technology-first language.',
     outcome: 'Delivered the entire motion presentation within a single day — a tight, roadmap-ready film aligned to Polygon’s brand identity.',
@@ -209,13 +219,14 @@ const WORK = [
   {
     id: 'w10',
     pid: '253023237',
+    yt: '3VuKs4V0_vA',
     title: 'FO-X — Launch Event Opening',
     client: 'FO-X · Fluid Studio',
     category: 'Web3 / Event Opening',
     year: '2026',
     banner: `${COVER}/9577cb253023237.Y3JvcCwxMjI3LDk2MCwzNDYsMA.png`,
     href: 'https://www.behance.net/gallery/253023237/FO-X-Launch-Event-Opening',
-    aspect: 'aspect-[16/9]',
+    aspect: 'aspect-video',
     color: '#0a1024',
     challenge: 'A 20-second high-energy opening film for FO-X’s product launch event in China — built to reflect the brand’s futuristic identity and build anticipation before the on-stage reveal.',
     outcome: 'End-to-end motion, sound design and music timing — a cinematic opener that anchored the live event with bold typography, kinetic transitions and a synchronised audiovisual arc.',
@@ -225,13 +236,14 @@ const WORK = [
   {
     id: 'w11',
     pid: '253021697',
+    yt: 'IYcdwnOtSxk',
     title: 'Pomo — AI Marketing Launch Film',
     client: 'Pomo AI · Spacekayak',
     category: 'AI / SaaS / Launch Film',
     year: '2026',
     banner: `${COVER}/04c53e253021697.Y3JvcCw5MzAsNzI3LDQ4NiwxNzU.png`,
     href: 'https://www.behance.net/gallery/253021697/Pomo',
-    aspect: 'aspect-[16/10]',
+    aspect: 'aspect-video',
     color: '#1a1208',
     challenge: 'A premium product launch film for Pomo AI — an AI-powered marketing platform — combining cinematic live-action footage shot in Los Angeles with kinetic branded motion graphics for a modern, AI-first SaaS launch.',
     outcome: 'Full-post treatment: editorial, integrated motion graphics and sound design — a fast-paced launch film that feels premium and communicates the product with clarity.',
@@ -241,13 +253,14 @@ const WORK = [
   {
     id: 'w12',
     pid: '253025931',
+    yt: 'bBu0HyYkjrw',
     title: 'Summer.fi — Intro Animation Concept',
     client: 'Summer.fi (concept)',
     category: 'Web3 / Brand Motion',
     year: '2026',
     banner: `${COVER}/dd8e2c253025931.Y3JvcCwxMTgwLDkyMywzNjgsNzg.png`,
     href: 'https://www.behance.net/gallery/253025931/Summerfi-Intro-Animation-Concept',
-    aspect: 'aspect-[16/9]',
+    aspect: 'aspect-video',
     color: '#241608',
     challenge: 'A self-initiated intro animation concept for Summer.fi — a weekend creative exercise exploring premium brand animation, modern transitions and sound design in the visual language of the Summer.fi identity.',
     outcome: 'A tight two-day exploration shipped as a concept piece — refining motion techniques while showcasing a premium, brand-aligned Web3 aesthetic.',
@@ -257,13 +270,14 @@ const WORK = [
   {
     id: 'w13',
     pid: '253024051',
+    yt: 'y9jkgr1rIlc',
     title: 'Ewigbyte — Funding Announcement',
     client: 'Ewigbyte · Fluid Studio',
     category: 'Web3 / Social Motion',
     year: '2026',
     banner: `${COVER}/6256b7253024051.Y3JvcCwxMzgwLDEwODAsMjcwLDA.png`,
     href: 'https://www.behance.net/gallery/253024051/Ewigbyte-Funding-Announcement',
-    aspect: 'aspect-[4/5]',
+    aspect: 'aspect-video',
     color: '#0a1428',
     challenge: 'A short social-first announcement for Ewigbyte celebrating a funding milestone — clean, modern and energetic while staying on-brand across platforms.',
     outcome: 'Fully designed, animated and delivered within a three-hour turnaround — a fast, high-quality announcement piece for the brand’s socials.',
@@ -273,18 +287,147 @@ const WORK = [
   {
     id: 'w14',
     pid: '252221119',
+    yt: 'B3qqapjmu9s',
     title: 'QBeast — Website UI Motion',
     client: 'QBeast · Spacekayak',
     category: 'SaaS / UI Motion / GIFs',
     year: '2026',
     banner: `${COVER}/6d3506252221119.Y3JvcCw4MDgsNjMyLDAsMA.jpg`,
     href: 'https://www.behance.net/gallery/252221119/QBeast-Website-UI-Motion-Graphics',
-    aspect: 'aspect-[4/5]',
+    aspect: 'aspect-video',
     color: '#0f0f1a',
     challenge: 'Design a set of lightweight, looping abstract shape animations for the QBeast website — adding subtle motion and personality without compromising web performance.',
     outcome: 'Delivered a family of on-brand loopable GIFs shipped across the QBeast site — quiet motion that lifts the browsing experience.',
     tools: ['After Effects', 'Figma'],
     role: 'Motion Design, UI Animation',
+  },
+  {
+    id: 'w15',
+    yt: 'XaScies0vu4',
+    title: 'Basecamp',
+    client: 'Basecamp',
+    category: 'Product Film',
+    year: '2025',
+    banner: YT_THUMB('XaScies0vu4'),
+    href: 'https://youtu.be/XaScies0vu4',
+    aspect: 'aspect-video',
+    color: '#0f120a',
+    challenge: 'Basecamp — a launch-ready motion piece delivered end-to-end with editorial, animation and sound design.',
+    outcome: 'Shipped for launch surfaces and social cutdowns.',
+    tools: ['After Effects', 'Premiere Pro'],
+    role: 'Motion Design, Edit',
+  },
+  {
+    id: 'w16',
+    yt: 'fTnuLwL3XDg',
+    title: 'Hybrid After Party — Token 2049 Dubai',
+    client: 'Token 2049',
+    category: 'Web3 / Event Film',
+    year: '2025',
+    banner: YT_THUMB('fTnuLwL3XDg'),
+    href: 'https://youtu.be/fTnuLwL3XDg',
+    aspect: 'aspect-video',
+    color: '#150a1f',
+    challenge: 'Event opener / after-movie for Hybrid After Party at Token 2049 Dubai — cinematic pacing, live-action integration and dynamic type.',
+    outcome: 'Delivered as the event’s hero film — used across launch surfaces and socials.',
+    tools: ['Premiere Pro', 'After Effects'],
+    role: 'Direction, Edit, Motion',
+  },
+  {
+    id: 'w17',
+    yt: 'mlGEQQD7VqA',
+    title: 'Dvara for NFH',
+    client: 'Dvara · NFH',
+    category: 'Impact / Explainer',
+    year: '2025',
+    banner: YT_THUMB('mlGEQQD7VqA'),
+    href: 'https://youtu.be/mlGEQQD7VqA',
+    aspect: 'aspect-video',
+    color: '#0a1a1c',
+    challenge: 'A story-first explainer for Dvara × NFH translating a complex impact mission into a clear, human, watchable film.',
+    outcome: 'Anchored the campaign and reused across partner channels.',
+    tools: ['After Effects', 'Premiere Pro'],
+    role: 'Edit, Motion, Sound Design',
+  },
+  {
+    id: 'w18',
+    yt: '8XnuRgBntsM',
+    title: 'Lovble',
+    client: 'Lovble',
+    category: 'Brand Film',
+    year: '2025',
+    banner: YT_THUMB('8XnuRgBntsM'),
+    href: 'https://youtu.be/8XnuRgBntsM',
+    aspect: 'aspect-video',
+    color: '#1a0a1a',
+    challenge: 'A short, brand-forward motion piece for Lovble — playful pacing, on-brand color and tightly synchronised sound design.',
+    outcome: 'Shipped as the brand’s hero film across launch pages and socials.',
+    tools: ['After Effects', 'Illustrator'],
+    role: 'Motion Design, Sound',
+  },
+  {
+    id: 'w19',
+    yt: 'LLVnCnfxHD8',
+    title: 'HyperSignal — Vol. 1',
+    client: 'HyperSignal',
+    category: 'Web3 / Brand Motion',
+    year: '2025',
+    banner: YT_THUMB('LLVnCnfxHD8'),
+    href: 'https://youtu.be/LLVnCnfxHD8',
+    aspect: 'aspect-video',
+    color: '#0a1024',
+    challenge: 'A brand-forward motion film for HyperSignal — the first volume in a series exploring the product’s identity, tone and kinetic language.',
+    outcome: 'Delivered as the anchor visual for the launch campaign.',
+    tools: ['After Effects', 'Illustrator'],
+    role: 'Motion Design, Animation',
+  },
+  {
+    id: 'w20',
+    yt: 'HK-2vYa4EoU',
+    title: 'HyperSignal',
+    client: 'HyperSignal',
+    category: 'Web3 / Product Film',
+    year: '2025',
+    banner: YT_THUMB('HK-2vYa4EoU'),
+    href: 'https://youtu.be/HK-2vYa4EoU',
+    aspect: 'aspect-video',
+    color: '#0a1a24',
+    challenge: 'The core product film for HyperSignal — translating the platform’s promise into a tight, kinetic and on-brand narrative.',
+    outcome: 'Anchored the launch page and reused across social cutdowns.',
+    tools: ['After Effects', 'Premiere Pro', 'Illustrator'],
+    role: 'Direction, Motion, Edit',
+  },
+  {
+    id: 'w21',
+    yt: 'NfqeGSH_-1w',
+    title: 'Sarvam AI — Samvaad',
+    client: 'Sarvam AI',
+    category: 'AI / Product Film',
+    year: '2025',
+    banner: YT_THUMB('NfqeGSH_-1w'),
+    href: 'https://www.behance.net/gallery/245007383/Sarvam-AI-Product-Launch-Videos',
+    aspect: 'aspect-video',
+    color: '#1a1a2e',
+    challenge: 'One of four films for Sarvam AI’s India AI Summit launch — Samvaad — showcasing the platform’s conversational AI capabilities.',
+    outcome: 'Delivered as a launch reel used across the AI Summit stage, launch pages and social.',
+    tools: ['After Effects', 'Premiere Pro', 'Figma'],
+    role: 'Motion Direction, Animation, Edit',
+  },
+  {
+    id: 'w22',
+    yt: 'QdVLgGfIyLg',
+    title: 'Sarvam AI — Studio',
+    client: 'Sarvam AI',
+    category: 'AI / Product Film',
+    year: '2025',
+    banner: YT_THUMB('QdVLgGfIyLg'),
+    href: 'https://www.behance.net/gallery/245007383/Sarvam-AI-Product-Launch-Videos',
+    aspect: 'aspect-video',
+    color: '#1e1a2e',
+    challenge: 'One of four films for Sarvam AI’s India AI Summit launch — Studio — showcasing the platform’s creative product surface.',
+    outcome: 'Delivered as a launch reel used across the AI Summit stage, launch pages and social.',
+    tools: ['After Effects', 'Premiere Pro', 'Figma'],
+    role: 'Motion Direction, Animation, Edit',
   },
 ];
 
@@ -945,6 +1088,53 @@ function Work({ onOpen }) {
 }
 
 /* -----------------------------------------------------------
+   YOUTUBE VIDEO EMBED  (lazy iframe, autoplay muted, respects UX rules)
+----------------------------------------------------------- */
+function YoutubeVideo({ ytId, title }) {
+  const [mounted, setMounted] = useState(false);
+  const [loaded, setLoaded] = useState(false);
+
+  useEffect(() => {
+    // Wait for the shared-layout morph to settle before injecting the iframe
+    const t = setTimeout(() => setMounted(true), 450);
+    return () => clearTimeout(t);
+  }, [ytId]);
+
+  const src = `https://www.youtube.com/embed/${ytId}?autoplay=1&mute=1&rel=0&modestbranding=1&playsinline=1&color=white`;
+
+  return (
+    <>
+      {mounted && (
+        <iframe
+          src={src}
+          title={title}
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture; web-share"
+          allowFullScreen
+          referrerPolicy="strict-origin-when-cross-origin"
+          loading="lazy"
+          onLoad={() => setLoaded(true)}
+          style={{
+            border: 0,
+            transition: 'opacity 700ms cubic-bezier(0.22,1,0.36,1)',
+            opacity: loaded ? 1 : 0,
+          }}
+          className="absolute inset-0 w-full h-full"
+        />
+      )}
+
+      {/* Play affordance while iframe warms up */}
+      {!loaded && (
+        <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+          <div className="w-14 h-14 md:w-16 md:h-16 rounded-full bg-white/10 backdrop-blur border border-white/25 flex items-center justify-center">
+            <div className="w-0 h-0 border-t-[8px] border-t-transparent border-b-[8px] border-b-transparent border-l-[14px] border-l-white ml-1" />
+          </div>
+        </div>
+      )}
+    </>
+  );
+}
+
+/* -----------------------------------------------------------
    BEHANCE VIDEO EMBED  (mounts after layout-morph, fades in on load)
 ----------------------------------------------------------- */
 function BehanceVideo({ pid, title }) {
@@ -1011,6 +1201,10 @@ function CaseStudy({ project, onClose, onOpen }) {
     <motion.div
       ref={scrollerRef}
       data-lenis-prevent
+      onClick={(e) => {
+        // Click-outside close: only trigger when clicking the backdrop itself (not inner content)
+        if (e.target === e.currentTarget) onClose();
+      }}
       className="fixed inset-0 z-[120] bg-[#060606]/95 backdrop-blur-xl overflow-y-auto overscroll-contain"
       style={{ WebkitOverflowScrolling: 'touch' }}
       initial={{ opacity: 0 }}
@@ -1037,10 +1231,10 @@ function CaseStudy({ project, onClose, onOpen }) {
             />
           </motion.div>
 
-          {/* Behance video embed — layered on top, fades in on load so the shared-layout
+          {/* YouTube video embed — layered on top, fades in on load so the shared-layout
               banner image morph reads cleanly first. */}
-          {project.pid && (
-            <BehanceVideo pid={project.pid} title={project.title} />
+          {project.yt && (
+            <YoutubeVideo ytId={project.yt} title={project.title} />
           )}
         </motion.div>
 
